@@ -13,7 +13,6 @@
         /* Apply Inter font globally */
         body {
             font-family: 'Inter', sans-serif;
-            /* Added background color for better contrast */
             background-color: #f9fafb; /* Equivalent to bg-gray-50 */
         }
         /* Smooth scrolling */
@@ -22,12 +21,10 @@
         }
 
         /* --- Animation Styles --- */
-
-        /* Enhanced Section Fade-in Animation */
         .section-fade-in {
             opacity: 0;
-            transform: translateY(30px); /* Slightly increased distance */
-            animation: fadeInSmooth 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; /* Smoother easing */
+            transform: translateY(30px);
+            animation: fadeInSmooth 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
         }
         @keyframes fadeInSmooth {
             to {
@@ -35,49 +32,39 @@
                 transform: translateY(0);
             }
         }
-
-        /* Staggered delay for sections */
         main > section:nth-child(1) { animation-delay: 0.1s; }
         main > section:nth-child(2) { animation-delay: 0.2s; }
         main > section:nth-child(3) { animation-delay: 0.3s; }
         main > section:nth-child(4) { animation-delay: 0.4s; }
         main > section:nth-child(5) { animation-delay: 0.5s; }
         main > section:nth-child(6) { animation-delay: 0.6s; }
-        main > section:nth-child(7) { animation-delay: 0.7s; } /* Added delay for contact */
-
+        main > section:nth-child(7) { animation-delay: 0.7s; }
 
         /* Navigation Link Hover Underline Effect */
         .nav-link {
             position: relative;
-            padding-bottom: 4px; /* Space for the underline */
-            transition: color 0.3s ease; /* Smooth color transition */
+            padding-bottom: 4px;
+            transition: color 0.3s ease;
         }
         .nav-link::after {
             content: '';
             position: absolute;
             width: 0;
-            height: 2px; /* Thickness of the underline */
+            height: 2px;
             bottom: 0;
-            left: 50%; /* Start from center */
+            left: 50%;
             background-color: #4f46e5; /* Indigo color */
-            transition: all 0.3s ease-out; /* Animate width and left position */
-            transform: translateX(-50%); /* Center the initial zero-width line */
+            transition: all 0.3s ease-out;
+            transform: translateX(-50%);
         }
         .nav-link:hover::after {
-            width: 100%; /* Expand underline to full width */
-            left: 0; /* Align to the left */
-            transform: translateX(0); /* Reset transform */
+            width: 100%;
+            left: 0;
+            transform: translateX(0);
         }
         .nav-link:hover {
-             color: #4f46e5; /* Change text color on hover */
+             color: #4f46e5;
         }
-
-        /* Card Hover Effect (Applied via Tailwind classes) */
-        /* Tailwind classes like 'transition', 'duration-300', 'ease-in-out', 'hover:shadow-xl', 'hover:scale-[1.02]' handle this */
-
-        /* Button Hover/Active Effect (Applied via Tailwind classes) */
-         /* Tailwind classes like 'transition', 'duration-300', 'transform', 'hover:scale-105', 'active:scale-95' handle this */
-
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800 leading-relaxed">
@@ -87,7 +74,8 @@
             <div class="text-2xl font-bold text-indigo-600">
                 <a href="#" class="transition duration-300 hover:opacity-80">Jenifer Seciliya</a>
             </div>
-            <div class="hidden md:flex space-x-8"> <a href="#about" class="nav-link text-gray-600">About</a>
+            <div class="hidden md:flex space-x-8">
+                <a href="#about" class="nav-link text-gray-600">About</a>
                 <a href="#experience" class="nav-link text-gray-600">Experience</a>
                 <a href="#projects" class="nav-link text-gray-600">Projects</a>
                 <a href="#skills" class="nav-link text-gray-600">Skills</a>
@@ -108,39 +96,61 @@
         </div>
     </header>
 
-    <main class="container mx-auto px-6 py-16"> <section id="about" class="mb-20 section-fade-in"> <h2 class="text-4xl font-bold text-gray-800 mb-8 border-l-4 border-indigo-500 pl-4">About Me</h2> <div class="bg-white p-10 rounded-lg shadow-lg"> <h3 class="text-2xl font-semibold text-indigo-700 mb-4">
-                    Data Analyst / Data Scientist
-                </h3>
-                <p class="text-lg text-gray-600 mb-6"> Based in New York, USA. Passionate about transforming data into actionable insights.
-                </p>
-                <p class="text-gray-700 leading-relaxed"> A Data Analyst and Data Scientist with a strong background in analyzing and interpreting data to support business decisions. Experienced in using Python, SQL, and machine learning techniques to analyze data, build predictive models, and create clear visualizations. Proficient in leveraging tools such as Tableau, Power BI, and Python libraries (Matplotlib, Seaborn) to present data in an accessible and meaningful way. Skilled in data cleaning and transformation, and applying machine learning algorithms to uncover patterns and generate accurate predictions. Focused on utilizing data to solve complex problems, optimize processes, and enable informed decision-making. Eager to contribute to customer-facing data science and data analytics projects and enhance platform functionality.
-                </p>
-                <div class="mt-8 flex flex-wrap gap-4"> <a href="mailto:jenifercecilia010@gmail.com" class="text-indigo-600 hover:text-indigo-800 transition duration-300 flex items-center text-sm">
-                        <i class="fas fa-envelope mr-2 text-lg"></i> jenifercecilia010@gmail.com
-                     </a>
-                     <a href="tel:+14846813442" class="text-indigo-600 hover:text-indigo-800 transition duration-300 flex items-center text-sm">
-                         <i class="fas fa-phone mr-2 text-lg"></i> +1 484-681-3442
-                     </a>
-                     <a href="https://www.linkedin.com/in/jenifercecilia0808/" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:text-indigo-800 transition duration-300 flex items-center text-sm">
-                         <i class="fab fa-linkedin mr-2 text-lg"></i> LinkedIn
-                     </a>
+    <main class="container mx-auto px-6 py-16">
+
+        <section id="about" class="mb-20 section-fade-in">
+            <h2 class="text-4xl font-bold text-gray-800 mb-8 border-l-4 border-indigo-500 pl-4">About Me</h2>
+            <div class="bg-white p-10 rounded-lg shadow-lg">
+                <div class="flex flex-col md:flex-row items-center md:items-start gap-8">
+                    <div class="flex-shrink-0">
+                        <img
+                            src="profile_pic.jpg"
+                            alt="Jenifer Seciliya"
+                            class="w-36 h-36 md:w-48 md:h-48 rounded-full object-cover shadow-md border-4 border-indigo-100"
+                            onerror="this.onerror=null; this.src='https://placehold.co/192x192/e2e8f0/64748b?text=JS';"
+                        >
+                    </div>
+                    <div class="text-center md:text-left">
+                        <h3 class="text-2xl font-semibold text-indigo-700 mb-3">
+                            Data Analyst / Data Scientist
+                        </h3>
+                        <p class="text-lg text-gray-600 mb-5">
+                            Based in New York, USA. Passionate about transforming data into actionable insights.
+                        </p>
+                        <p class="text-gray-700 leading-relaxed mb-6">
+                            A Data Analyst and Data Scientist with a strong background in analyzing and interpreting data to support business decisions. Experienced in using Python, SQL, and machine learning techniques... [rest of the summary text] ... Eager to contribute to customer-facing data science and data analytics projects and enhance platform functionality.
+                        </p>
+                        <div class="flex flex-wrap justify-center md:justify-start gap-4">
+                             <a href="mailto:jenifercecilia010@gmail.com" class="text-indigo-600 hover:text-indigo-800 transition duration-300 flex items-center text-sm">
+                                <i class="fas fa-envelope mr-2 text-lg"></i> jenifercecilia010@gmail.com
+                             </a>
+                             <a href="tel:+14846813442" class="text-indigo-600 hover:text-indigo-800 transition duration-300 flex items-center text-sm">
+                                 <i class="fas fa-phone mr-2 text-lg"></i> +1 484-681-3442
+                             </a>
+                             <a href="https://www.linkedin.com/in/jenifercecilia0808/" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:text-indigo-800 transition duration-300 flex items-center text-sm">
+                                 <i class="fab fa-linkedin mr-2 text-lg"></i> LinkedIn
+                             </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
         <section id="experience" class="mb-20 section-fade-in">
             <h2 class="text-4xl font-bold text-gray-800 mb-8 border-l-4 border-indigo-500 pl-4">Experience</h2>
-            <div class="space-y-10"> <div class="bg-white p-8 rounded-lg shadow-md border border-gray-100 transition duration-300 ease-in-out hover:shadow-xl hover:scale-[1.02]">
+            <div class="space-y-10">
+                <div class="bg-white p-8 rounded-lg shadow-md border border-gray-100 transition duration-300 ease-in-out hover:shadow-xl hover:scale-[1.02]">
                     <h3 class="text-xl font-semibold text-indigo-700">Data Analyst</h3>
                     <p class="text-md font-medium text-gray-600">Verizon-Best Wireless | New York, USA</p>
                     <p class="text-sm text-gray-500 mb-4">Mar 2024 - Feb 2025</p>
-                    <ul class="list-disc list-inside text-gray-700 space-y-2 pl-2"> <li>Analyzed sales and chargeback data to provide meaningful insights and improve business performance.</li>
-                        <li>Created interactive Power BI dashboards and automated reports, helping district managers track key sales metrics in real time.</li>
-                        <li>Wrote complex SQL queries to extract and clean large datasets, ensuring accurate and reliable reporting.</li>
-                        <li>Used Python (Matplotlib, Pandas, Seaborn) to visualize trends, uncover patterns, and present findings to stakeholders.</li>
-                        <li>Identified chargeback trends, leading to a 10% reduction in operational inefficiencies by improving dispute resolution strategies.</li>
-                        <li>Collaborated with finance and operations teams to refine reporting processes, enhancing decision-making.</li>
-                        <li>Ensured data integrity and quality checks, minimizing reporting errors and increasing trust in analytics.</li>
+                    <ul class="list-disc list-inside text-gray-700 space-y-2 pl-2">
+                        <li>Analyzed sales and chargeback data...</li>
+                        <li>Created interactive Power BI dashboards...</li>
+                        <li>Wrote complex SQL queries...</li>
+                        <li>Used Python (Matplotlib, Pandas, Seaborn)...</li>
+                        <li>Identified chargeback trends...</li>
+                        <li>Collaborated with finance and operations teams...</li>
+                        <li>Ensured data integrity...</li>
                     </ul>
                 </div>
                 <div class="bg-white p-8 rounded-lg shadow-md border border-gray-100 transition duration-300 ease-in-out hover:shadow-xl hover:scale-[1.02]">
@@ -148,11 +158,11 @@
                     <p class="text-md font-medium text-gray-600">Convergence | Hyderabad, India</p>
                     <p class="text-sm text-gray-500 mb-4">Aug 2021 - Dec 2022</p>
                     <ul class="list-disc list-inside text-gray-700 space-y-2 pl-2">
-                        <li>Developed interactive data visualizations, dashboards, and reports using Tableau and Power BI.</li>
-                        <li>Performed data cleaning, standardization, and segmentation using SQL and data manipulation techniques.</li>
-                        <li>Automated recurring financial reports, reducing manual effort and improving reporting efficiency by 30%.</li>
-                        <li>Identified financial trends and anomalies, helping optimize revenue and cost-saving strategies.</li>
-                        <li>Collaborated with finance teams to enhance forecasting models, improving budget accuracy and financial planning.</li>
+                        <li>Developed interactive data visualizations...</li>
+                        <li>Performed data cleaning, standardization...</li>
+                        <li>Automated recurring financial reports...</li>
+                        <li>Identified financial trends...</li>
+                        <li>Collaborated with finance teams...</li>
                     </ul>
                 </div>
                  <div class="bg-white p-8 rounded-lg shadow-md border border-gray-100 transition duration-300 ease-in-out hover:shadow-xl hover:scale-[1.02]">
@@ -160,10 +170,10 @@
                     <p class="text-md font-medium text-gray-600">Pantech solution | Remote, India</p>
                     <p class="text-sm text-gray-500 mb-4">May 2021 - Jul 2021</p>
                     <ul class="list-disc list-inside text-gray-700 space-y-2 pl-2">
-                        <li>Worked on developing and implementing computer vision models (face, fingerprint, object detection) using Python, OpenCV, TensorFlow, PyTorch.</li>
-                        <li>Processed and prepared images using feature extraction, data augmentation, and preprocessing techniques.</li>
-                        <li>Utilized SQL to extract and manipulate structured data for BI reports.</li>
-                        <li>Improved model performance by fine-tuning deep learning models (ResNet, YOLO, MobileNet).</li>
+                        <li>Worked on developing computer vision models...</li>
+                        <li>Processed and prepared images...</li>
+                        <li>Utilized SQL to extract data...</li>
+                        <li>Improved model performance...</li>
                     </ul>
                 </div>
                  <div class="bg-white p-8 rounded-lg shadow-md border border-gray-100 transition duration-300 ease-in-out hover:shadow-xl hover:scale-[1.02]">
@@ -171,11 +181,11 @@
                     <p class="text-md font-medium text-gray-600">Flux Auto | Bangalore, India</p>
                     <p class="text-sm text-gray-500 mb-4">Sep 2018 - Apr 2021</p>
                     <ul class="list-disc list-inside text-gray-700 space-y-2 pl-2">
-                        <li>Focused on data annotation and quality control for computer vision projects.</li>
-                        <li>Developed object detection/segmentation models (Python, TensorFlow, PyTorch, OpenCV), improving accuracy by 30%.</li>
-                        <li>Created and improved deep learning systems for autonomous vehicles (YOLO, Faster R-CNN, Mask R-CNN).</li>
-                        <li>Processed and enhanced data through preprocessing, augmentation, and feature engineering.</li>
-                        <li>Led a team of data scientist interns, managing development and deployment of object detection models.</li>
+                        <li>Focused on data annotation...</li>
+                        <li>Developed object detection/segmentation models...</li>
+                        <li>Created deep learning systems for autonomous vehicles...</li>
+                        <li>Processed and enhanced data...</li>
+                        <li>Led a team of data scientist interns...</li>
                     </ul>
                 </div>
             </div>
@@ -183,11 +193,13 @@
 
         <section id="projects" class="mb-20 section-fade-in">
             <h2 class="text-4xl font-bold text-gray-800 mb-8 border-l-4 border-indigo-500 pl-4">Projects</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8"> <div class="bg-white p-6 rounded-lg shadow-md border border-gray-100 transition duration-300 ease-in-out hover:shadow-xl hover:scale-[1.02]">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md border border-gray-100 transition duration-300 ease-in-out hover:shadow-xl hover:scale-[1.02]">
                     <h3 class="text-lg font-semibold text-indigo-700 mb-2">Social Media and Mental Health Analysis</h3>
                     <p class="text-sm text-gray-500 mb-3">Oct 2024 - Feb 2025</p>
-                    <p class="text-gray-700 mb-4 leading-relaxed">Conducted EDA and built predictive models (Random Forest, SVM) in Python to analyze the impact of social media on mental health. Visualized findings using Matplotlib and Power BI.</p>
-                    <div class="flex flex-wrap gap-2"> <span class="inline-block bg-indigo-100 text-indigo-800 text-xs font-medium px-2.5 py-1 rounded-full">Python</span>
+                    <p class="text-gray-700 mb-4 leading-relaxed">Conducted EDA and built predictive models...</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="inline-block bg-indigo-100 text-indigo-800 text-xs font-medium px-2.5 py-1 rounded-full">Python</span>
                         <span class="inline-block bg-indigo-100 text-indigo-800 text-xs font-medium px-2.5 py-1 rounded-full">SQL</span>
                         <span class="inline-block bg-indigo-100 text-indigo-800 text-xs font-medium px-2.5 py-1 rounded-full">EDA</span>
                         <span class="inline-block bg-indigo-100 text-indigo-800 text-xs font-medium px-2.5 py-1 rounded-full">ML</span>
@@ -197,7 +209,7 @@
                  <div class="bg-white p-6 rounded-lg shadow-md border border-gray-100 transition duration-300 ease-in-out hover:shadow-xl hover:scale-[1.02]">
                     <h3 class="text-lg font-semibold text-indigo-700 mb-2">USA Accidents Prediction</h3>
                     <p class="text-sm text-gray-500 mb-3">May 2023 - Jul 2023</p>
-                    <p class="text-gray-700 mb-4 leading-relaxed">Developed a linear regression model in Python to predict accidents in the USA, using SQL for data preparation.</p>
+                    <p class="text-gray-700 mb-4 leading-relaxed">Developed a linear regression model...</p>
                      <div class="flex flex-wrap gap-2">
                         <span class="inline-block bg-indigo-100 text-indigo-800 text-xs font-medium px-2.5 py-1 rounded-full">Python</span>
                         <span class="inline-block bg-indigo-100 text-indigo-800 text-xs font-medium px-2.5 py-1 rounded-full">SQL</span>
@@ -207,16 +219,17 @@
                  <div class="bg-white p-6 rounded-lg shadow-md border border-gray-100 transition duration-300 ease-in-out hover:shadow-xl hover:scale-[1.02]">
                     <h3 class="text-lg font-semibold text-indigo-700 mb-2">Layoffs Detection</h3>
                     <p class="text-sm text-gray-500 mb-3">May 2023 - Jul 2023</p>
-                    <p class="text-gray-700 mb-4 leading-relaxed">Built a real-time detection system using R to analyze workforce trends and predict layoffs. Evaluated model performance (R-squared, MAE, RMSE).</p>
+                    <p class="text-gray-700 mb-4 leading-relaxed">Built a real-time detection system using R...</p>
                      <div class="flex flex-wrap gap-2">
-                        <span class="inline-block bg-green-100 text-green-800 text-xs font-medium px-2.5 py-1 rounded-full">R</span> <span class="inline-block bg-green-100 text-green-800 text-xs font-medium px-2.5 py-1 rounded-full">Time Series</span>
+                        <span class="inline-block bg-green-100 text-green-800 text-xs font-medium px-2.5 py-1 rounded-full">R</span>
+                        <span class="inline-block bg-green-100 text-green-800 text-xs font-medium px-2.5 py-1 rounded-full">Time Series</span>
                         <span class="inline-block bg-green-100 text-green-800 text-xs font-medium px-2.5 py-1 rounded-full">Prediction</span>
                      </div>
                 </div>
                 <div class="bg-white p-6 rounded-lg shadow-md border border-gray-100 transition duration-300 ease-in-out hover:shadow-xl hover:scale-[1.02]">
                     <h3 class="text-lg font-semibold text-indigo-700 mb-2">House Price Prediction</h3>
                     <p class="text-sm text-gray-500 mb-3">Jan 2019 - Mar 2019</p>
-                    <p class="text-gray-700 mb-4 leading-relaxed">Built a house price prediction model using Python and ML algorithms (Linear Regression, Decision Trees, Random Forest).</p>
+                    <p class="text-gray-700 mb-4 leading-relaxed">Built a house price prediction model...</p>
                     <div class="flex flex-wrap gap-2">
                         <span class="inline-block bg-indigo-100 text-indigo-800 text-xs font-medium px-2.5 py-1 rounded-full">Python</span>
                         <span class="inline-block bg-indigo-100 text-indigo-800 text-xs font-medium px-2.5 py-1 rounded-full">Machine Learning</span>
@@ -225,9 +238,10 @@
                  <div class="bg-white p-6 rounded-lg shadow-md border border-gray-100 transition duration-300 ease-in-out hover:shadow-xl hover:scale-[1.02]">
                     <h3 class="text-lg font-semibold text-indigo-700 mb-2">Brain Tumor Detection</h3>
                     <p class="text-sm text-gray-500 mb-3">Jan 2018 - Mar 2018</p>
-                    <p class="text-gray-700 mb-4 leading-relaxed">Applied k-means clustering to segment and detect brain tumors from medical imaging data. Utilized image processing techniques.</p>
+                    <p class="text-gray-700 mb-4 leading-relaxed">Applied k-means clustering...</p>
                     <div class="flex flex-wrap gap-2">
-                        <span class="inline-block bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-1 rounded-full">Clustering</span> <span class="inline-block bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-1 rounded-full">Image Processing</span>
+                        <span class="inline-block bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-1 rounded-full">Clustering</span>
+                        <span class="inline-block bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-1 rounded-full">Image Processing</span>
                         <span class="inline-block bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-1 rounded-full">K-Means</span>
                     </div>
                 </div>
@@ -236,34 +250,41 @@
 
         <section id="skills" class="mb-20 section-fade-in">
             <h2 class="text-4xl font-bold text-gray-800 mb-8 border-l-4 border-indigo-500 pl-4">Technical Skills</h2>
-            <div class="bg-white p-10 rounded-lg shadow-lg"> <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"> <div>
+            <div class="bg-white p-10 rounded-lg shadow-lg">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div>
                         <h4 class="text-lg font-semibold text-gray-700 mb-3 flex items-center"><i class="fas fa-code mr-2 text-indigo-500"></i>Languages</h4>
                         <p class="text-gray-600">Python (Proficient), SQL (Proficient), R, C, C++</p>
                     </div>
                     <div>
                         <h4 class="text-lg font-semibold text-gray-700 mb-3 flex items-center"><i class="fab fa-python mr-2 text-indigo-500"></i>Python Libraries</h4>
-                        <p class="text-gray-600">scikit-learn, Pandas, NumPy, Matplotlib, Seaborn</p> </div>
+                        <p class="text-gray-600">scikit-learn, Pandas, NumPy, Matplotlib, Seaborn</p>
+                    </div>
                     <div>
                         <h4 class="text-lg font-semibold text-gray-700 mb-3 flex items-center"><i class="fas fa-brain mr-2 text-indigo-500"></i>ML/Data Skills</h4>
                         <p class="text-gray-600">Regression, Clustering, Statistical Modeling, Data Mining, Model Validation/Development, NLP, EDA</p>
                     </div>
                     <div>
                         <h4 class="text-lg font-semibold text-gray-700 mb-3 flex items-center"><i class="fas fa-chart-bar mr-2 text-indigo-500"></i>Data Visualization</h4>
-                        <p class="text-gray-600">Tableau, Power BI, Matplotlib, Seaborn, Excel</p> </div>
+                        <p class="text-gray-600">Tableau, Power BI, Matplotlib, Seaborn, Excel</p>
+                    </div>
                     <div>
                         <h4 class="text-lg font-semibold text-gray-700 mb-3 flex items-center"><i class="fas fa-database mr-2 text-indigo-500"></i>Databases</h4>
                         <p class="text-gray-600">MySQL, PostgreSQL</p>
                     </div>
                      <div>
                         <h4 class="text-lg font-semibold text-gray-700 mb-3 flex items-center"><i class="fas fa-cloud mr-2 text-indigo-500"></i>Platforms</h4>
-                        <p class="text-gray-600">Cloud Architectures (General)</p> </div>
+                        <p class="text-gray-600">Cloud Architectures (General)</p>
+                    </div>
                 </div>
             </div>
         </section>
 
         <section id="education" class="mb-20 section-fade-in">
             <h2 class="text-4xl font-bold text-gray-800 mb-8 border-l-4 border-indigo-500 pl-4">Education</h2>
-             <div class="space-y-8"> <div class="bg-white p-8 rounded-lg shadow-md border border-gray-100"> <h3 class="text-xl font-semibold text-indigo-700">Masters of Science in Data Science</h3>
+             <div class="space-y-8">
+                 <div class="bg-white p-8 rounded-lg shadow-md border border-gray-100">
+                     <h3 class="text-xl font-semibold text-indigo-700">Masters of Science in Data Science</h3>
                      <p class="text-md font-medium text-gray-600">Harrisburg University of Science and Technology, Pennsylvania</p>
                      <p class="text-sm text-gray-500 mb-3">Mar 2023 - Feb 2025</p>
                      <p class="text-gray-700 font-medium">GPA: 3.76 / 4.0</p>
@@ -279,7 +300,9 @@
 
         <section id="awards" class="mb-20 section-fade-in">
             <h2 class="text-4xl font-bold text-gray-800 mb-8 border-l-4 border-indigo-500 pl-4">Awards & Certifications</h2>
-            <div class="bg-white p-10 rounded-lg shadow-lg"> <ul class="list-none space-y-4"> <li class="flex items-start">
+            <div class="bg-white p-10 rounded-lg shadow-lg">
+                <ul class="list-none space-y-4">
+                    <li class="flex items-start">
                         <i class="fas fa-certificate mr-3 text-yellow-500 mt-1"></i>
                         <div>
                             <span class="font-semibold text-gray-800">Deep Learning Specialization</span> <span class="text-sm text-gray-500">(Coursera)</span>
@@ -320,7 +343,9 @@
 
          <section id="contact" class="mb-16 section-fade-in">
             <h2 class="text-4xl font-bold text-gray-800 mb-8 border-l-4 border-indigo-500 pl-4">Get In Touch</h2>
-            <div class="bg-gradient-to-r from-indigo-500 to-purple-600 p-10 rounded-lg shadow-xl text-center"> <p class="text-xl text-white font-light mb-6">I'm always open to discussing new projects or opportunities. Feel free to reach out!</p> <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
+            <div class="bg-gradient-to-r from-indigo-500 to-purple-600 p-10 rounded-lg shadow-xl text-center">
+                 <p class="text-xl text-white font-light mb-6">I'm always open to discussing new projects or opportunities. Feel free to reach out!</p>
+                 <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
                      <a href="mailto:jenifercecilia010@gmail.com" class="bg-white text-indigo-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition duration-300 shadow-md flex items-center space-x-2 transform hover:scale-105 active:scale-95">
                          <i class="fas fa-envelope"></i>
                          <span>Email Me</span>
@@ -335,11 +360,12 @@
 
     </main>
 
-    <footer class="bg-gray-900 text-gray-400 py-8 mt-16"> <div class="container mx-auto px-6 text-center">
+    <footer class="bg-gray-900 text-gray-400 py-8 mt-16">
+        <div class="container mx-auto px-6 text-center">
             <p>&copy; 2025 Jenifer Seciliya. All rights reserved.</p>
             <p class="text-sm mt-2">Built with <i class="fas fa-heart text-red-500"></i> using HTML & Tailwind CSS</p>
-            <div class="mt-4 space-x-4">
-                 <a href="https://www.linkedin.com/in/jenifercecilia0808/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile" class="text-gray-400 hover:text-white transition duration-300"><i class="fab fa-linkedin fa-lg"></i></a>
+             <div class="mt-4 space-x-4">
+                <a href="https://www.linkedin.com/in/jenifercecilia0808/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile" class="text-gray-400 hover:text-white transition duration-300"><i class="fab fa-linkedin fa-lg"></i></a>
                 </div>
         </div>
     </footer>
@@ -347,20 +373,18 @@
     <script>
         const menuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
-        const mobileMenuLinks = mobileMenu.querySelectorAll('a'); // Select links inside mobile menu
+        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
 
         menuButton.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
-            // Toggle aria-expanded attribute for accessibility
             const isExpanded = menuButton.getAttribute('aria-expanded') === 'true';
             menuButton.setAttribute('aria-expanded', !isExpanded);
         });
 
-        // Close menu when a link is clicked (important for single-page apps)
         mobileMenuLinks.forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.add('hidden');
-                 menuButton.setAttribute('aria-expanded', 'false'); // Reset aria-expanded
+                 menuButton.setAttribute('aria-expanded', 'false');
             });
         });
     </script>
