@@ -76,15 +76,4 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
-const cursorGlow = document.querySelector(".cursor-glow");
-window.addEventListener(
-  "pointermove",
-  (event) => {
-    if (!cursorGlow) return;
-    cursorGlow.style.left = `${event.clientX}px`;
-    cursorGlow.style.top = `${event.clientY}px`;
-  },
-  { passive: true },
-);
-
 document.getElementById("current-year").textContent = new Date().getFullYear();
