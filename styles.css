@@ -85,7 +85,7 @@ h2 { margin-bottom: 20px; font-size: clamp(42px, 4.5vw, 68px); letter-spacing: -
 
 .work { padding-top: clamp(110px, 12vw, 170px); }
 .section-heading { display: grid; grid-template-columns: 1.15fr .75fr; gap: 80px; align-items: end; max-width: 1180px; margin-bottom: clamp(58px, 7vw, 96px); }
-.section-heading .overline { grid-column: 1 / -1; margin-bottom: -28px; }
+.section-heading:not(.light) .overline { grid-column: 1 / -1; margin-bottom: -28px; }
 .section-heading h2 { margin-bottom: 0; }
 .section-heading > p:last-child { max-width: 480px; margin: 0; color: var(--muted); line-height: 1.7; }
 .project { overflow: hidden; border: 1px solid var(--line); background: var(--surface); }
@@ -124,6 +124,7 @@ button.project-image { width: 100%; padding: 0; border: 0; color: inherit; font:
 
 .capabilities { background: var(--surface); }
 .section-heading.light { display: block; margin-bottom: 56px; }
+.section-heading.light .overline { margin-bottom: 24px; }
 .section-heading.light h2 { max-width: 760px; }
 .capability-grid { display: grid; grid-template-columns: repeat(4,1fr); border-block: 1px solid var(--line); }
 .capability { min-height: 330px; padding: 32px 28px; border-right: 1px solid var(--line); }
