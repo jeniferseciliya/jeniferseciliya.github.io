@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="A portfolio retail analytics dashboard built from the real UCI Online Retail II dataset."
+    />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%231d1d1b'/%3E%3Cpath d='M16 44V20h16c9 0 16 4 16 12s-7 12-16 12H16zm9-7h7c4 0 7-2 7-5s-3-5-7-5h-7v10z' fill='%23f3efe5'/%3E%3C/svg%3E"
+    />
+    <title>Meridian Retail Intelligence</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="grain" aria-hidden="true"></div>
+    <header class="masthead">
+      <div class="masthead__mark" aria-hidden="true">M</div>
+      <div>
+        <p class="eyebrow">Portfolio case study · retail analytics</p>
+        <h1>Meridian Retail Intelligence</h1>
+        <p class="deck">
+          Real transactions. Decision-ready signals.
+        </p>
+      </div>
+      <div class="edition">
+        <span>Analysis period</span>
+        <strong id="analysis-period">Loading…</strong>
+        <span>UCI Online Retail II</span>
+      </div>
+    </header>
+
+    <main>
+      <section class="control-strip" aria-label="Dashboard filters">
+        <div class="control-strip__intro">
+          <span class="section-number">01</span>
+          <div>
+            <p class="eyebrow">Executive lens</p>
+            <p>Filter the commercial view without changing the governed metric definitions.</p>
+          </div>
+        </div>
+        <label>
+          <span>Country</span>
+          <select id="country-filter">
+            <option value="All">All countries</option>
+          </select>
+        </label>
+        <label>
+          <span>Year</span>
+          <select id="year-filter">
+            <option value="All">All years</option>
+            <option value="2009">2009</option>
+            <option value="2010">2010</option>
+            <option value="2011">2011</option>
+          </select>
+        </label>
+        <button id="reset-filters" type="button">Reset view</button>
+      </section>
+
+      <section class="kpi-grid" aria-label="Key performance indicators">
+        <article class="kpi kpi--lead">
+          <span class="kpi__label">Net sales</span>
+          <strong id="kpi-revenue">—</strong>
+          <small id="kpi-revenue-note">Completed positive-value invoices</small>
+        </article>
+        <article class="kpi">
+          <span class="kpi__label">Orders</span>
+          <strong id="kpi-orders">—</strong>
+          <small>Distinct completed invoices</small>
+        </article>
+        <article class="kpi">
+          <span class="kpi__label">Average order value</span>
+          <strong id="kpi-aov">—</strong>
+          <small>Net sales ÷ orders</small>
+        </article>
+        <article class="kpi">
+          <span class="kpi__label">Known customers</span>
+          <strong id="kpi-customers">—</strong>
+          <small>Distinct non-null customer IDs</small>
+        </article>
+        <article class="kpi kpi--risk">
+          <span class="kpi__label">Cancellation rate</span>
+          <strong id="kpi-cancellations">—</strong>
+          <small>Cancelled ÷ all distinct orders</small>
+        </article>
+      </section>
+
+      <section class="story-grid">
+        <article class="panel panel--trend">
+          <header class="panel__header">
+            <div>
+              <span class="section-number">02</span>
+              <p class="eyebrow">Commercial pulse</p>
+              <h2>Monthly net sales</h2>
+            </div>
+            <p id="trend-caption">Revenue across the selected commercial view.</p>
+          </header>
+          <div id="revenue-chart" class="chart" role="img" aria-label="Monthly revenue line chart"></div>
+        </article>
+
+        <article class="panel panel--ranking">
+          <header class="panel__header">
+            <div>
+              <span class="section-number">03</span>
+              <p class="eyebrow">Concentration</p>
+              <h2 id="ranking-title">Top countries</h2>
+            </div>
+          </header>
+          <div id="ranking-bars" class="ranking-bars"></div>
+        </article>
+      </section>
+
+      <section class="intelligence-band">
+        <header class="intelligence-band__header">
+          <div>
+            <span class="section-number section-number--light">04</span>
+            <p class="eyebrow eyebrow--light">Signal desk</p>
+            <h2>AI-ready exception monitoring</h2>
+          </div>
+          <p>
+            Statistical signals are converted into structured evidence and a recommended
+            analyst check. No recommendation is published without human review.
+          </p>
+        </header>
+        <div id="insight-cards" class="insight-cards"></div>
+      </section>
+
+      <section class="story-grid story-grid--lower">
+        <article class="panel panel--retention">
+          <header class="panel__header">
+            <div>
+              <span class="section-number">05</span>
+              <p class="eyebrow">Customer health</p>
+              <h2>Monthly retention cohorts</h2>
+            </div>
+            <p>Percentage of each first-purchase cohort active in later months.</p>
+          </header>
+          <div id="retention-heatmap" class="heatmap-wrap"></div>
+        </article>
+
+        <article class="panel panel--segments">
+          <header class="panel__header">
+            <div>
+              <span class="section-number">06</span>
+              <p class="eyebrow">Customer value</p>
+              <h2>RFM segment mix</h2>
+            </div>
+          </header>
+          <div class="segment-layout">
+            <div id="segment-donut" class="segment-donut" aria-hidden="true">
+              <span>Known<br />customers</span>
+            </div>
+            <div id="segment-legend" class="segment-legend"></div>
+          </div>
+        </article>
+      </section>
+
+      <section class="panel panel--table">
+        <header class="panel__header">
+          <div>
+            <span class="section-number">07</span>
+            <p class="eyebrow">Merchandise detail</p>
+            <h2 id="product-table-title">Top products</h2>
+          </div>
+          <p>Commercial leaders within the selected country.</p>
+        </header>
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Rank</th>
+                <th>Product</th>
+                <th>Stock code</th>
+                <th class="number">Revenue</th>
+                <th class="number">Units</th>
+                <th class="number">Orders</th>
+              </tr>
+            </thead>
+            <tbody id="product-table-body"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="methodology">
+        <div>
+          <p class="eyebrow">Data contract</p>
+          <h2>What entered the dashboard</h2>
+        </div>
+        <dl>
+          <div><dt>Source rows</dt><dd id="quality-source">—</dd></div>
+          <div><dt>Valid sales rows</dt><dd id="quality-valid">—</dd></div>
+          <div><dt>Missing customer IDs</dt><dd id="quality-missing">—</dd></div>
+          <div><dt>Cancelled / returned lines</dt><dd id="quality-cancelled">—</dd></div>
+          <div><dt>Pipeline status</dt><dd id="quality-status">—</dd></div>
+        </dl>
+      </section>
+    </main>
+
+    <footer>
+      <p>
+        Built with Python, SQL, dbt patterns, governed KPI definitions and vanilla
+        JavaScript.
+      </p>
+      <p>
+        Data: <a href="https://doi.org/10.24432/C5CG6D">UCI Online Retail II</a>,
+        Daqing Chen (2012), licensed CC BY 4.0.
+      </p>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>

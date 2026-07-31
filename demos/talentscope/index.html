@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="TalentScope: a people analytics and compensation intelligence dashboard built from FY2025 U.S. Department of Labor LCA disclosure data."
+    />
+    <title>TalentScope — Workforce Intelligence</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='32' fill='%23e44b32'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-size='27' fill='%23fbf8ed'%3ETS%3C/text%3E%3C/svg%3E" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <div class="ticker" aria-label="Dataset context">
+        <span>Workforce intelligence / FY2025</span>
+        <span class="ticker-mark">●</span>
+        <span>594,821 resolved cases</span>
+        <span class="ticker-mark">●</span>
+        <span>U.S. Department of Labor</span>
+      </div>
+
+      <header class="hero">
+        <div class="brand-lockup">
+          <div class="monogram" aria-hidden="true">TS</div>
+          <div>
+            <p class="eyebrow">People analytics / compensation strategy</p>
+            <h1>Talent<span>Scope</span></h1>
+          </div>
+        </div>
+        <div class="hero-copy">
+          <p class="hero-kicker">A market dossier for sharper workforce decisions.</p>
+          <p>
+            Explore specialized-labor demand, salary floors, location premiums,
+            employer competition, and filing operations—with the Bay Area in focus.
+          </p>
+        </div>
+      </header>
+
+      <section class="control-deck" aria-label="Dashboard filters">
+        <div class="control-intro">
+          <span class="section-number">01</span>
+          <div>
+            <p class="eyebrow">Define the talent market</p>
+            <p id="selectionLabel">People &amp; Talent · Bay Area</p>
+          </div>
+        </div>
+        <label>
+          <span>Job family</span>
+          <select id="familyFilter" aria-label="Filter by job family"></select>
+        </label>
+        <label>
+          <span>Market</span>
+          <select id="marketFilter" aria-label="Filter by market"></select>
+        </label>
+        <button id="resetFilters" type="button">Reset view ↗</button>
+      </section>
+
+      <main>
+        <section class="kpi-grid" aria-label="Key metrics">
+          <article class="kpi-card kpi-feature">
+            <p>Certified positions</p>
+            <strong id="positionsKpi">—</strong>
+            <span>Worker positions on certified filings</span>
+          </article>
+          <article class="kpi-card">
+            <p>New employment</p>
+            <strong id="newPositionsKpi">—</strong>
+            <span>Talent-acquisition demand proxy</span>
+          </article>
+          <article class="kpi-card">
+            <p>Median salary floor</p>
+            <strong id="salaryKpi">—</strong>
+            <span id="salaryDelta">Annualized lower bound</span>
+          </article>
+          <article class="kpi-card">
+            <p>Median wage premium</p>
+            <strong id="premiumKpi">—</strong>
+            <span>Above prevailing-wage benchmark</span>
+          </article>
+          <article class="kpi-card">
+            <p>Certification rate</p>
+            <strong id="certificationKpi">—</strong>
+            <span>Latest FY2025 case outcome</span>
+          </article>
+          <article class="kpi-card">
+            <p>Median processing</p>
+            <strong id="processingKpi">—</strong>
+            <span id="processingP90">Received to decision</span>
+          </article>
+        </section>
+
+        <section class="analysis-grid">
+          <article class="panel trend-panel">
+            <div class="panel-heading">
+              <div>
+                <span class="section-number">02</span>
+                <p class="eyebrow">Determination flow</p>
+                <h2>Certified positions by month</h2>
+              </div>
+              <p>Operational activity, not candidate-stage conversion.</p>
+            </div>
+            <div id="trendChart" class="trend-chart" role="img" aria-label="Monthly certified worker positions"></div>
+          </article>
+
+          <article class="panel brief-panel">
+            <div class="panel-heading">
+              <div>
+                <span class="section-number">03</span>
+                <p class="eyebrow">Evidence-locked brief</p>
+                <h2>What merits attention</h2>
+              </div>
+              <span class="review-badge">Human review required</span>
+            </div>
+            <ol id="insightList" class="insight-list"></ol>
+            <p class="brief-note">
+              Rules generate the evidence above. An LLM may draft wording, but it
+              may not calculate metrics, invent causes, or remove limitations.
+            </p>
+          </article>
+        </section>
+
+        <section class="analysis-grid compensation-grid">
+          <article class="panel">
+            <div class="panel-heading compact">
+              <div>
+                <span class="section-number">04</span>
+                <p class="eyebrow">Compensation architecture</p>
+                <h2>Salary-floor distribution</h2>
+              </div>
+            </div>
+            <div id="salaryBars" class="bar-list" aria-label="Salary floor distribution"></div>
+          </article>
+
+          <article class="panel">
+            <div class="panel-heading compact">
+              <div>
+                <span class="section-number">05</span>
+                <p class="eyebrow">Benchmark position</p>
+                <h2>Prevailing-wage levels</h2>
+              </div>
+            </div>
+            <div id="wageLevelBars" class="bar-list muted-bars" aria-label="Prevailing wage levels"></div>
+          </article>
+
+          <article class="panel risk-panel">
+            <div class="panel-heading compact">
+              <div>
+                <span class="section-number">06</span>
+                <p class="eyebrow">Compensation watch</p>
+                <h2>Risk signals</h2>
+              </div>
+            </div>
+            <div class="risk-metrics">
+              <div><strong id="lowPremium">—</strong><span>within 2% of prevailing wage</span></div>
+              <div><strong id="concentration">—</strong><span>positions at top 10 employers</span></div>
+              <div><strong id="belowPrevailing">—</strong><span>validated below-benchmark cases</span></div>
+            </div>
+          </article>
+        </section>
+
+        <section class="table-grid">
+          <article class="panel table-panel">
+            <div class="panel-heading compact">
+              <div>
+                <span class="section-number">07</span>
+                <p class="eyebrow">Talent competition</p>
+                <h2>Leading employers</h2>
+              </div>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Employer</th><th>Positions</th><th>Median floor</th></tr></thead>
+                <tbody id="employerTable"></tbody>
+              </table>
+            </div>
+          </article>
+
+          <article class="panel table-panel">
+            <div class="panel-heading compact">
+              <div>
+                <span class="section-number">08</span>
+                <p class="eyebrow">Role demand</p>
+                <h2>Leading occupations</h2>
+              </div>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Occupation</th><th>Positions</th><th>Median floor</th></tr></thead>
+                <tbody id="occupationTable"></tbody>
+              </table>
+            </div>
+          </article>
+        </section>
+
+        <section class="analysis-grid operations-grid">
+          <article class="panel">
+            <div class="panel-heading compact">
+              <div>
+                <span class="section-number">09</span>
+                <p class="eyebrow">Filing pipeline</p>
+                <h2>Latest case outcomes</h2>
+              </div>
+            </div>
+            <div id="pipelineBars" class="bar-list status-bars"></div>
+          </article>
+
+          <article class="panel">
+            <div class="panel-heading compact">
+              <div>
+                <span class="section-number">10</span>
+                <p class="eyebrow">Workforce movement</p>
+                <h2>Employment action mix</h2>
+              </div>
+            </div>
+            <div id="actionBars" class="bar-list muted-bars"></div>
+          </article>
+
+          <article class="panel">
+            <div class="panel-heading compact">
+              <div>
+                <span class="section-number">11</span>
+                <p class="eyebrow">Location strategy</p>
+                <h2 id="geographyTitle">Leading states</h2>
+              </div>
+            </div>
+            <div id="geographyBars" class="bar-list"></div>
+          </article>
+        </section>
+
+        <aside class="methodology">
+          <div>
+            <p class="eyebrow">Read this before deciding</p>
+            <h2>One market signal—not the whole labor market.</h2>
+          </div>
+          <p id="methodNote"></p>
+          <p>
+            Salary figures are annualized filing wage floors for valid full-time
+            records. Bay Area uses the nine-county definition with a documented
+            city fallback when county is missing. Duplicate case numbers are resolved
+            to the latest FY2025 determination.
+          </p>
+        </aside>
+      </main>
+
+      <footer>
+        <span>TalentScope / Workforce Intelligence</span>
+        <span>Source: DOL OFLC LCA disclosure data, FY2025</span>
+        <span>Built for transparent people decisions</span>
+      </footer>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>

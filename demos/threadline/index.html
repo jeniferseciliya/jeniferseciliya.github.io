@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="A product analytics portfolio case study built from real UCI clickstream data."
+    />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='32' fill='%23131422'/%3E%3Cpath d='M17 20h30v8H36v20h-8V28H17z' fill='%23d7ff3f'/%3E%3C/svg%3E"
+    />
+    <title>Threadline Product Observatory</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="stitch-field" aria-hidden="true"></div>
+    <header class="topbar">
+      <a class="brand" href="#top" aria-label="Threadline home">
+        <span class="brand__mark">T</span>
+        <span>Threadline / Product Observatory</span>
+      </a>
+      <p>Real clickstream · 2008-04-01—2008-08-13</p>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="hero__copy">
+          <p class="kicker">Product analytics case study · 01</p>
+          <h1>Read the browse path.<br /><em>Design the next test.</em></h1>
+          <p class="hero__dek">
+            Session depth, category movement, product placement, friction triage,
+            and statistically grounded experiment sizing from 165,474 real
+            product views.
+          </p>
+        </div>
+        <aside class="scope-card" aria-label="Analysis scope">
+          <span class="scope-card__index">DATA NOTE / 01</span>
+          <strong>No purchase event is present.</strong>
+          <p>
+            “Consideration” and “deep exploration” are labeled behavioral
+            proxies—not conversion. The dashboard never invents checkout data.
+          </p>
+        </aside>
+      </section>
+
+      <section class="filter-rail" aria-label="Dashboard filters">
+        <div>
+          <span class="micro">Research slice</span>
+          <strong>Change the audience. Keep the definitions.</strong>
+        </div>
+        <label>
+          Month
+          <select id="month-filter" aria-label="Month"></select>
+        </label>
+        <label>
+          Country
+          <select id="country-filter" aria-label="Country"></select>
+        </label>
+        <button id="reset-filter" type="button">Reset</button>
+      </section>
+
+      <section class="metric-marquee" aria-label="Key product metrics">
+        <article class="metric metric--lime">
+          <span>Sessions</span><strong id="kpi-sessions">—</strong>
+          <small>Distinct browse sessions</small>
+        </article>
+        <article class="metric">
+          <span>Product views</span><strong id="kpi-clicks">—</strong>
+          <small>Ordered click events</small>
+        </article>
+        <article class="metric">
+          <span>Views / session</span><strong id="kpi-depth">—</strong>
+          <small>Mean browse depth</small>
+        </article>
+        <article class="metric metric--coral">
+          <span>One-click sessions</span><strong id="kpi-bounce">—</strong>
+          <small>Short-session diagnostic</small>
+        </article>
+        <article class="metric">
+          <span>Friction queue</span><strong id="kpi-friction">—</strong>
+          <small>Rule-based review candidates</small>
+        </article>
+      </section>
+
+      <section class="module module--dark">
+        <header class="module__header">
+          <div>
+            <span class="module__number">02</span>
+            <p class="kicker kicker--lime">Browse-depth progression</p>
+            <h2>Behavioral proxy funnel</h2>
+          </div>
+          <p>
+            Sequential depth thresholds describe exploration. They do not imply
+            purchase intent or causal progression.
+          </p>
+        </header>
+        <div id="stage-flow" class="stage-flow"></div>
+      </section>
+
+      <section class="split-grid">
+        <article class="module">
+          <header class="module__header">
+            <div>
+              <span class="module__number">03</span>
+              <p class="kicker">Session texture</p>
+              <h2>How deep do people browse?</h2>
+            </div>
+          </header>
+          <div id="depth-chart" class="depth-chart" role="img" aria-label="Session depth distribution"></div>
+        </article>
+        <article class="module module--acid">
+          <header class="module__header">
+            <div>
+              <span class="module__number">04</span>
+              <p class="kicker">Merchandising pull</p>
+              <h2>Category attention</h2>
+            </div>
+          </header>
+          <div id="category-bars" class="category-bars"></div>
+        </article>
+      </section>
+
+      <section class="split-grid split-grid--placement">
+        <article class="module">
+          <header class="module__header">
+            <div>
+              <span class="module__number">05</span>
+              <p class="kicker">Screen real estate</p>
+              <h2>Placement repeat-view signal</h2>
+            </div>
+            <p>Consecutive repeat views by the six source-defined screen zones.</p>
+          </header>
+          <div id="placement-grid" class="placement-grid"></div>
+        </article>
+        <article class="module module--ink">
+          <header class="module__header">
+            <div>
+              <span class="module__number">06</span>
+              <p class="kicker kicker--coral">Path movement</p>
+              <h2>Category transitions</h2>
+            </div>
+          </header>
+          <div id="transition-list" class="transition-list"></div>
+        </article>
+      </section>
+
+      <section class="signal-lab">
+        <header class="signal-lab__header">
+          <div>
+            <p class="kicker kicker--lime">AI-ready research brief · 07</p>
+            <h2>Evidence first. Narrative second.</h2>
+          </div>
+          <p>
+            Rules produce a review queue and structured evidence. An analyst
+            verifies paths before an AI-assisted narrative is shared.
+          </p>
+        </header>
+        <div id="insight-grid" class="insight-grid"></div>
+      </section>
+
+      <section class="experiment-lab">
+        <div class="experiment-lab__copy">
+          <span class="module__number">08</span>
+          <p class="kicker">Experiment planning</p>
+          <h2>Size the test before reading the result.</h2>
+          <p>
+            Baseline: sessions with 4+ product views. Two-sided α = 5%, power =
+            80%, equal control/treatment allocation.
+          </p>
+        </div>
+        <div id="experiment-cards" class="experiment-cards"></div>
+      </section>
+
+      <section class="contract">
+        <div>
+          <p class="kicker">Data contract · 09</p>
+          <h2>What entered the analysis</h2>
+        </div>
+        <dl id="quality-list"></dl>
+      </section>
+    </main>
+
+    <footer>
+      <p>Python · SQL · dbt patterns · product analytics · experiment design</p>
+      <p>
+        Data:
+        <a href="https://doi.org/10.24432/C5QK7X">UCI Clickstream Data for Online Shopping</a>,
+        CC BY 4.0.
+      </p>
+    </footer>
+    <script src="app.js"></script>
+  </body>
+</html>

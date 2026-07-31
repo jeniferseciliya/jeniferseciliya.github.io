@@ -128,15 +128,17 @@
           <h2>Analytics built to withstand a second question.</h2>
           <p>
             Each project begins with real data, documents the evidence boundary,
-            and connects technical execution to a business decision.
+            and connects technical execution to a business decision. Open any
+            dashboard below to filter and investigate the results yourself.
           </p>
         </div>
 
         <article class="project project-feature reveal">
-          <a class="project-image" href="https://github.com/jeniferseciliya/people-analytics-compensation-intelligence" target="_blank" rel="noopener" aria-label="View TalentScope on GitHub">
+          <button class="project-image dashboard-trigger" type="button" data-dashboard="demos/talentscope/" data-title="TalentScope" data-source="https://github.com/jeniferseciliya/people-analytics-compensation-intelligence" aria-label="Open the interactive TalentScope dashboard">
             <img src="assets/projects/talentscope.png" alt="TalentScope people analytics dashboard showing Bay Area compensation and hiring metrics" />
             <span class="image-index">01 / 03</span>
-          </a>
+            <span class="interactive-badge"><span class="pulse-dot"></span> Interactive dashboard <b>Open ↗</b></span>
+          </button>
           <div class="project-body">
             <div class="project-meta"><span>People analytics</span><span>FY2025 DOL data</span></div>
             <h3>TalentScope</h3>
@@ -152,16 +154,20 @@
               <div><strong>16/16</strong><span>dbt checks passed</span></div>
             </div>
             <div class="tag-row"><span>SQL</span><span>Python</span><span>dbt</span><span>DuckDB</span><span>People Analytics</span></div>
-            <a class="project-link" href="https://github.com/jeniferseciliya/people-analytics-compensation-intelligence" target="_blank" rel="noopener">View case study on GitHub <span>↗</span></a>
+            <div class="project-actions">
+              <button class="project-link dashboard-trigger" type="button" data-dashboard="demos/talentscope/" data-title="TalentScope" data-source="https://github.com/jeniferseciliya/people-analytics-compensation-intelligence">Explore live dashboard <span>↗</span></button>
+              <a class="source-link" href="https://github.com/jeniferseciliya/people-analytics-compensation-intelligence" target="_blank" rel="noopener">Methodology &amp; code</a>
+            </div>
           </div>
         </article>
 
         <div class="project-grid">
           <article class="project project-card reveal">
-            <a class="project-image" href="https://github.com/jeniferseciliya/retail-bi-ai-analytics" target="_blank" rel="noopener" aria-label="View Meridian on GitHub">
+            <button class="project-image dashboard-trigger" type="button" data-dashboard="demos/meridian/" data-title="Meridian" data-source="https://github.com/jeniferseciliya/retail-bi-ai-analytics" aria-label="Open the interactive Meridian dashboard">
               <img src="assets/projects/meridian.png" alt="Meridian retail business intelligence dashboard" />
               <span class="image-index">02 / 03</span>
-            </a>
+              <span class="interactive-badge"><span class="pulse-dot"></span> Interactive dashboard <b>Open ↗</b></span>
+            </button>
             <div class="project-body">
               <div class="project-meta"><span>Business intelligence</span><span>Retail</span></div>
               <h3>Meridian</h3>
@@ -171,15 +177,19 @@
                 <div><strong>£20.97M</strong><span>modeled revenue</span></div>
               </div>
               <div class="tag-row"><span>BI</span><span>RFM</span><span>Cohorts</span><span>Responsible AI</span></div>
-              <a class="project-link" href="https://github.com/jeniferseciliya/retail-bi-ai-analytics" target="_blank" rel="noopener">View project <span>↗</span></a>
+              <div class="project-actions">
+                <button class="project-link dashboard-trigger" type="button" data-dashboard="demos/meridian/" data-title="Meridian" data-source="https://github.com/jeniferseciliya/retail-bi-ai-analytics">Explore live dashboard <span>↗</span></button>
+                <a class="source-link" href="https://github.com/jeniferseciliya/retail-bi-ai-analytics" target="_blank" rel="noopener">Methodology &amp; code</a>
+              </div>
             </div>
           </article>
 
           <article class="project project-card reveal" data-delay="100">
-            <a class="project-image" href="https://github.com/jeniferseciliya/product-analytics-experimentation" target="_blank" rel="noopener" aria-label="View Threadline on GitHub">
+            <button class="project-image dashboard-trigger" type="button" data-dashboard="demos/threadline/" data-title="Threadline" data-source="https://github.com/jeniferseciliya/product-analytics-experimentation" aria-label="Open the interactive Threadline dashboard">
               <img src="assets/projects/threadline.png" alt="Threadline product analytics and experimentation dashboard" />
               <span class="image-index">03 / 03</span>
-            </a>
+              <span class="interactive-badge"><span class="pulse-dot"></span> Interactive dashboard <b>Open ↗</b></span>
+            </button>
             <div class="project-body">
               <div class="project-meta"><span>Product analytics</span><span>Experimentation</span></div>
               <h3>Threadline</h3>
@@ -189,7 +199,10 @@
                 <div><strong>24,026</strong><span>sessions analyzed</span></div>
               </div>
               <div class="tag-row"><span>Funnels</span><span>Paths</span><span>A/B Testing</span><span>Power Analysis</span></div>
-              <a class="project-link" href="https://github.com/jeniferseciliya/product-analytics-experimentation" target="_blank" rel="noopener">View project <span>↗</span></a>
+              <div class="project-actions">
+                <button class="project-link dashboard-trigger" type="button" data-dashboard="demos/threadline/" data-title="Threadline" data-source="https://github.com/jeniferseciliya/product-analytics-experimentation">Explore live dashboard <span>↗</span></button>
+                <a class="source-link" href="https://github.com/jeniferseciliya/product-analytics-experimentation" target="_blank" rel="noopener">Methodology &amp; code</a>
+              </div>
             </div>
           </article>
         </div>
@@ -310,6 +323,27 @@
       <span>Data &amp; BI Analyst</span>
       <span>© <span id="current-year"></span></span>
     </footer>
+
+    <div class="dashboard-modal" id="dashboard-modal" aria-hidden="true">
+      <div class="dashboard-backdrop" data-dashboard-close></div>
+      <section class="dashboard-window" role="dialog" aria-modal="true" aria-labelledby="dashboard-modal-title">
+        <header class="dashboard-toolbar">
+          <div>
+            <span class="dashboard-status"><span class="pulse-dot"></span> Live analysis</span>
+            <strong id="dashboard-modal-title">Interactive dashboard</strong>
+          </div>
+          <div class="dashboard-toolbar-actions">
+            <a id="dashboard-full-link" href="demos/talentscope/" target="_blank" rel="noopener">Full screen ↗</a>
+            <a id="dashboard-source-link" href="https://github.com/jeniferseciliya" target="_blank" rel="noopener">View code ↗</a>
+            <button class="dashboard-close" type="button" data-dashboard-close aria-label="Close interactive dashboard">Close ×</button>
+          </div>
+        </header>
+        <div class="dashboard-frame-wrap">
+          <div class="dashboard-loader" id="dashboard-loader"><span></span> Loading the real dashboard…</div>
+          <iframe id="dashboard-frame" title="Interactive analytics dashboard" loading="lazy"></iframe>
+        </div>
+      </section>
+    </div>
 
     <script src="script.js"></script>
   </body>
