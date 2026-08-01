@@ -113,7 +113,7 @@ h2 { margin-bottom: 20px; font-size: clamp(42px, 4.5vw, 68px); letter-spacing: -
 .project-link span { font-size: 15px; }
 .project-link:hover, .project-link:focus-visible { color: var(--accent); }
 .source-link { width: fit-content; color: var(--muted); font-size: 9px; font-weight: 500; text-decoration-thickness: 1px; text-underline-offset: 3px; }
-.project-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; max-width: 1248px; margin: 0 auto; }
+.project-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; max-width: 1248px; margin: 0 auto; }
 .project-card { display: flex; flex-direction: column; }
 .project-card .project-image { min-height: 390px; max-height: 470px; }
 .project-card .project-body { flex: 1; }
@@ -180,6 +180,7 @@ footer a { color: #f5f5f2; text-decoration: none; }
   .hero-visual { width: min(100%, 680px); }
   .project-feature { grid-template-columns: 1fr; }
   .project-feature .project-image { min-height: 520px; max-height: 640px; }
+  .project-grid { grid-template-columns: 1fr 1fr; }
   .capability-grid { grid-template-columns: 1fr 1fr; }
   .capability:nth-child(2) { border-right: 0; }
   .capability:nth-child(-n+2) { border-bottom: 1px solid var(--line); }

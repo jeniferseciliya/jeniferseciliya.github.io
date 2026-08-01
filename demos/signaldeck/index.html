@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="SignalDeck: public-signal account prioritization, territory planning, and metric-quality intelligence for AI-cloud GTM teams."
+    />
+    <title>SignalDeck — AI Cloud GTM Intelligence</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,600&display=swap" rel="stylesheet" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23171918'/%3E%3Cpath d='M13 42h38M17 35l9-8 8 5 13-15' fill='none' stroke='%23d7ff45' stroke-width='5'/%3E%3C/svg%3E" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#mainContent">Skip to dashboard</a>
+    <div class="shell">
+      <header class="site-header">
+        <a class="wordmark" href="#top" aria-label="SignalDeck home">
+          <span class="wordmark-icon" aria-hidden="true">SD</span>
+          <span>SignalDeck</span>
+        </a>
+        <nav aria-label="Dashboard navigation">
+          <a href="#accounts">Accounts</a>
+          <a href="#territories">Territories</a>
+          <a href="#trust">Metric trust</a>
+        </nav>
+        <div class="freshness"><span></span><b id="headerDate">Loading signals</b></div>
+      </header>
+
+      <main id="mainContent">
+        <section class="hero" id="top">
+          <div class="hero-index" aria-hidden="true">GTM / 01</div>
+          <div class="hero-copy">
+            <p class="overline">AI cloud · public-signal intelligence</p>
+            <h1>Know where to look.<br /><em>Know what to trust.</em></h1>
+            <p class="hero-intro">
+              A transparent account-prioritization and territory-planning system for teams selling into the AI economy.
+              Real public evidence, tested definitions, and no invented pipeline.
+            </p>
+          </div>
+          <aside class="hero-register" aria-label="Dataset register">
+            <div><span>Companies monitored</span><strong id="heroCompanies">—</strong></div>
+            <div><span>Public openings scanned</span><strong id="heroJobs">—</strong></div>
+            <div><span>Automated checks</span><strong>27 / 27</strong></div>
+          </aside>
+        </section>
+
+        <section class="boundary" aria-label="Evidence boundary">
+          <span>Read before deciding</span>
+          <p id="evidenceBoundary">Loading evidence boundary…</p>
+          <button class="text-button" type="button" data-open-definition="gtm_priority_score">View metric contract ↗</button>
+        </section>
+
+        <section class="control-rail" aria-label="Account filters">
+          <div class="control-title">
+            <span>Panel view</span>
+            <strong id="filterResult">— accounts</strong>
+          </div>
+          <label><span>Priority</span><select id="priorityFilter"><option value="All">All priorities</option></select></label>
+          <label><span>Segment</span><select id="segmentFilter"><option value="All">All segments</option></select></label>
+          <label><span>Territory</span><select id="territoryFilter"><option value="All">All territories</option></select></label>
+          <button id="resetFilters" type="button">Reset</button>
+        </section>
+
+        <section class="kpi-strip" aria-label="GTM signal summary">
+          <article class="kpi-feature">
+            <p>Relevant open jobs</p>
+            <strong id="relevantJobsKpi">—</strong>
+            <span id="relevantRate">Strict public-signal rule</span>
+          </article>
+          <article><p>Strategic accounts</p><strong id="strategicKpi">—</strong><span>Two-source evidence minimum</span></article>
+          <article><p>Territory spread</p><strong id="imbalanceKpi">—</strong><span>Max-to-min scenario potential</span></article>
+          <article><p>Identity review</p><strong id="reviewKpi">—</strong><span>Mappings requiring confirmation</span></article>
+          <article><p>Metric readiness</p><strong id="qualityKpi">—</strong><span>Automated validation pass rate</span></article>
+        </section>
+
+        <section class="briefing section-pad" aria-labelledby="briefingTitle">
+          <div class="section-heading">
+            <div><span class="section-index">02</span><p class="overline">Evidence-linked briefing</p></div>
+            <h2 id="briefingTitle">What changed in the decision—not merely the chart.</h2>
+            <p>Rule-generated findings use tested marts. AI may help draft wording, but it cannot calculate metrics or remove limitations.</p>
+          </div>
+          <div id="briefingGrid" class="briefing-grid"></div>
+        </section>
+
+        <section class="account-section section-pad" id="accounts" aria-labelledby="accountTitle">
+          <div class="section-heading inline-heading">
+            <div><span class="section-index">03</span><p class="overline">Account research queue</p></div>
+            <h2 id="accountTitle">Priority is a question queue,<br />not a probability of purchase.</h2>
+          </div>
+          <div class="account-layout">
+            <div>
+              <div class="matrix-heading">
+                <span>Open-source signal ↑</span>
+                <span>Hiring signal →</span>
+              </div>
+              <div id="signalMatrix" class="signal-matrix" role="img" aria-label="Accounts positioned by hiring and public open-source signals"></div>
+            </div>
+            <div class="account-ledger">
+              <div class="ledger-head"><span>Account</span><span>Score</span><span>Status</span></div>
+              <div id="accountRows"></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="territory-section section-pad" id="territories" aria-labelledby="territoryTitle">
+          <div class="section-heading light-heading">
+            <div><span class="section-index">04</span><p class="overline">Capacity scenario</p></div>
+            <h2 id="territoryTitle">Balance potential,<br />not just account count.</h2>
+            <p>Four anonymous territories are assigned in descending round-robin order. They demonstrate planning logic, not an actual sales organization.</p>
+          </div>
+          <div id="territoryCards" class="territory-cards"></div>
+        </section>
+
+        <section class="market-section section-pad" aria-labelledby="marketTitle">
+          <div class="section-heading inline-heading">
+            <div><span class="section-index">05</span><p class="overline">Workload evidence</p></div>
+            <h2 id="marketTitle">Where the technical investment is visible.</h2>
+          </div>
+          <div class="market-grid">
+            <article class="analysis-card">
+              <div class="card-title"><span>Role context</span><button class="info-button" data-open-definition="relevant_open_job" aria-label="Relevant job definition">?</button></div>
+              <div id="roleBars" class="bar-stack"></div>
+            </article>
+            <article class="analysis-card">
+              <div class="card-title"><span>Technology signals</span><small>Accounts mentioning each term</small></div>
+              <div id="stackGrid" class="stack-grid"></div>
+            </article>
+            <article class="analysis-card industry-card">
+              <div class="card-title"><span>Industry view</span><small>Planning-eligible accounts</small></div>
+              <div id="industryRows" class="industry-rows"></div>
+            </article>
+          </div>
+        </section>
+
+        <section class="trust-section section-pad" id="trust" aria-labelledby="trustTitle">
+          <div class="trust-intro">
+            <span class="section-index">06</span>
+            <p class="overline">Metric trust</p>
+            <h2 id="trustTitle">A green dashboard can still be built on broken grain.</h2>
+            <p>Every published number reconciles to a documented account or job-posting grain. Optional-source coverage is shown separately from failed quality checks.</p>
+          </div>
+          <div id="qualityGrid" class="quality-grid"></div>
+          <div class="lineage" aria-label="Data lineage">
+            <div><span>01</span><b>Public APIs</b><small>Greenhouse · GitHub · Hugging Face</small></div>
+            <i>→</i>
+            <div><span>02</span><b>Canonical accounts</b><small>Identity map · source confidence</small></div>
+            <i>→</i>
+            <div><span>03</span><b>dbt metric layer</b><small>Grain · tests · contracts</small></div>
+            <i>→</i>
+            <div><span>04</span><b>GTM decision</b><small>Research · plan · review</small></div>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <div><strong>SignalDeck</strong><span>AI Cloud GTM Intelligence</span></div>
+        <p>Built from public signals for analytical demonstration. No affiliation with monitored companies.</p>
+        <a href="https://github.com/jeniferseciliya/ai-cloud-gtm-intelligence" target="_blank" rel="noreferrer">Methodology &amp; code ↗</a>
+      </footer>
+    </div>
+
+    <dialog id="accountDrawer" class="drawer">
+      <button class="drawer-close" type="button" data-close-drawer aria-label="Close account details">×</button>
+      <div id="drawerContent"></div>
+    </dialog>
+
+    <dialog id="definitionDialog" class="definition-dialog">
+      <button class="drawer-close" type="button" data-close-definition aria-label="Close metric definition">×</button>
+      <p class="overline">Metric contract</p>
+      <h2 id="definitionTitle">Definition</h2>
+      <p id="definitionBody"></p>
+    </dialog>
+
+    <script src="app.js"></script>
+  </body>
+</html>

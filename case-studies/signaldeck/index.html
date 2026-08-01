@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="SignalDeck case study: explainable account prioritization, territory planning, GTM metric governance, and AI-assisted decision support by Jenifer Seciliya." />
+    <meta name="theme-color" content="#f7f6f2" />
+    <meta property="og:title" content="SignalDeck — AI Cloud GTM Analytics Case Study" />
+    <meta property="og:description" content="From 5,886 live job postings and public engineering signals to a tested GTM research queue and territory scenario." />
+    <meta property="og:type" content="article" />
+    <title>SignalDeck GTM Analytics Case Study — Jenifer Seciliya</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23171716'/%3E%3Ctext x='32' y='40' text-anchor='middle' font-family='serif' font-size='24' fill='white'%3EJS%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body class="signal">
+    <a class="skip-link" href="#case-content">Skip to case study</a>
+    <header class="case-header">
+      <a class="back-link" href="../../#work"><span>←</span> Jenifer Seciliya</a>
+      <nav aria-label="Case study navigation">
+        <a href="#problem">Problem</a>
+        <a href="#findings">Findings</a>
+        <a class="header-dashboard" href="#dashboard">Dashboard ↓</a>
+      </nav>
+    </header>
+
+    <main class="case-main" id="case-content">
+      <section class="case-hero">
+        <div class="hero-grid">
+          <div>
+            <p class="eyebrow">Case study 01 · GTM analytics</p>
+            <h1>SignalDeck</h1>
+            <p class="hero-summary">A public-signal GTM intelligence system that helps an AI-cloud sales organization decide which accounts merit research, how to balance territory capacity, and whether the metric underneath the dashboard can be trusted.</p>
+          </div>
+          <aside class="hero-decision">
+            <span>The decision</span>
+            <p>Where should GTM operators investigate first, how should they distribute account potential, and which records require review before any sales action?</p>
+          </aside>
+        </div>
+
+        <div class="meta-strip" aria-label="Project summary">
+          <div><span>Audience</span><strong>GTM leadership, RevOps, Sales Operations</strong></div>
+          <div><span>Sources</span><strong>Greenhouse · GitHub · Hugging Face</strong></div>
+          <div><span>Analytical grain</span><strong>One canonical account and one published posting</strong></div>
+          <div><span>Stack</span><strong>SQL · Python · dbt · DuckDB · AI controls</strong></div>
+        </div>
+      </section>
+
+      <nav class="case-nav" aria-label="On this page">
+        <a href="#problem">01 Problem</a><a href="#data">02 Data</a><a href="#approach">03 Approach</a><a href="#findings">04 Findings</a><a href="#decision">05 Recommendation</a><a href="#dashboard">06 Explore</a><a href="#proof">07 Technical proof</a>
+      </nav>
+
+      <section class="chapter" id="problem">
+        <div class="chapter-label"><span>01</span><h2>Problem</h2></div>
+        <div class="chapter-body">
+          <p class="lead">AI appears in thousands of company pages, job descriptions, and repositories. The GTM problem is deciding which signals deserve attention without converting public activity into imaginary pipeline.</p>
+          <p>A useful system had to separate observable technical investment from private buying intent, exclude direct infrastructure providers from a prospect-planning scenario, make every score explainable, and expose identity or grain problems before leadership used the output.</p>
+          <div class="question-grid">
+            <article><span>Question 01</span><h3>Which accounts show multiple, current technical-investment signals?</h3></article>
+            <article><span>Question 02</span><h3>Can four territories be balanced by potential rather than account count?</h3></article>
+            <article><span>Question 03</span><h3>Is the dashboard showing a decision-ready metric or merely clean-looking noise?</h3></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="chapter" id="data">
+        <div class="chapter-label"><span>02</span><h2>Data</h2></div>
+        <div class="chapter-body">
+          <p class="lead">The first release monitors 25 real companies across AI-native builders, enterprise adopters, cloud software, and infrastructure market references.</p>
+          <p>Public Greenhouse boards supply current openings. GitHub organizations provide public repository activity, and Hugging Face organizations provide public model activity where available. Full job descriptions are used temporarily for classification but are not republished.</p>
+          <div class="evidence-grid">
+            <article><strong>25</strong><span>Companies in the documented panel</span></article>
+            <article><strong>5,886</strong><span>Published openings scanned in the snapshot</span></article>
+            <article><strong>1,866</strong><span>Strict AI/ML or infrastructure-context matches</span></article>
+          </div>
+          <div class="boundary">
+            <strong>Evidence boundary</strong>
+            <p>Hiring and open-source activity indicate observable technical investment. They do not prove budget, purchase intent, sales qualification, pipeline, bookings, ARR, customer status, or vendor evaluation.</p>
+          </div>
+          <p class="source-note">Sources: public Greenhouse Job Board, GitHub organization, and Hugging Face Hub endpoints, observed August 1, 2026 UTC. The curated panel is not a complete market census.</p>
+        </div>
+      </section>
+
+      <section class="chapter" id="approach">
+        <div class="chapter-label"><span>03</span><h2>Approach</h2></div>
+        <div class="chapter-body">
+          <p class="lead">The system was designed like a governed RevOps product: define the account grain, resolve identities, classify evidence, build metric contracts, test reconciliation, then expose a planning scenario.</p>
+          <div class="workflow">
+            <article><span>01</span><h3>Collect</h3><p>Retrieve public job, repository, and model signals without redistributing full descriptions.</p></article>
+            <article><span>02</span><h3>Resolve</h3><p>Map company identities across sources and preserve a confidence-based review queue.</p></article>
+            <article><span>03</span><h3>Score</h3><p>Combine panel-relative hiring, open-source, and public-model evidence transparently.</p></article>
+            <article><span>04</span><h3>Plan</h3><p>Exclude market references and distribute eligible accounts across anonymous territories.</p></article>
+            <article><span>05</span><h3>Validate</h3><p>Test account grain, job grain, relationships, bounds, categories, and planning exclusions.</p></article>
+          </div>
+          <div class="method-note">
+            <article><h3>Metric design</h3><p>The GTM priority score is 45% hiring, 30% public open-source, and 25% public-model signal. Component metrics use within-panel percentile ranks so raw company size does not automatically force every large company to the score ceiling.</p></article>
+            <article><h3>Responsible AI</h3><p>Rules and tested marts calculate every number. AI may draft a weekly briefing or propose exception resolutions, but it cannot invent CRM measures, silently resolve an identity, or publish without human review.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="chapter" id="findings">
+        <div class="chapter-label"><span>04</span><h2>Findings</h2></div>
+        <div class="chapter-body">
+          <p class="lead">The useful outcome is a defensible research queue and a visible set of operating tradeoffs—not a claim that public behavior predicts a sale.</p>
+          <div class="findings">
+            <article class="finding"><div class="finding-stat">31.7%</div><div><h3>A strict rule removed most general openings from the research signal.</h3><p>1,866 of 5,886 public openings qualified through an explicit AI/ML title or a technical title paired with concrete GPU, distributed-compute, training, serving, or ML-platform context.</p></div></article>
+            <article class="finding"><div class="finding-stat">6</div><div><h3>Six eligible accounts reached the strategic research band.</h3><p>The threshold requires a score of at least 50 and evidence from two or more source families. Infrastructure providers remain visible as market references but are excluded from territory assignments.</p></div></article>
+            <article class="finding"><div class="finding-stat">24.8%</div><div><h3>Equal account counts did not produce equal territory potential.</h3><p>The transparent four-territory baseline still has a 24.8% max-to-min weighted-potential spread, showing why capacity reviews need more than a count of logos.</p></div></article>
+            <article class="finding"><div class="finding-stat">27/27</div><div><h3>Metric checks passed while three identities remained visibly unresolved.</h3><p>Account and posting grains reconcile with no missing titles or source URLs. Medium-confidence source mappings stay in a human review queue rather than disappearing behind a green dashboard.</p></div></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="chapter" id="decision">
+        <div class="chapter-label"><span>05</span><h2>Decision</h2></div>
+        <div class="chapter-body">
+          <div class="recommendation">
+            <p class="eyebrow">Recommended operating use</p>
+            <h3>Use SignalDeck to prioritize account research and territory discussion—then join the result with governed CRM evidence before activation.</h3>
+            <p>The public layer is appropriate for market sensing and research prioritization. Leads, contacts, opportunity stages, ownership, conversion, ARR, bookings, quota, and forecast measures must remain in the internal Salesforce and revenue-data environment.</p>
+            <ul>
+              <li>Research strategic-band accounts and validate workload fit before outreach.</li>
+              <li>Resolve medium-confidence identities before creating or enriching CRM records.</li>
+              <li>Rebalance territories with actual capacity, ownership, quota, geography, and segment constraints.</li>
+              <li>Use an AI-written briefing only when every claim links back to a tested metric and human reviewer.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="dashboard-chapter" id="dashboard">
+        <div class="dashboard-intro">
+          <div><p class="eyebrow">06 · Interactive evidence</p><h2>Interrogate the signal yourself.</h2></div>
+          <div><p>Filter the panel, open an account evidence drawer, compare signal components, inspect the territory scenario, and review the metric-quality lineage. Market-reference providers are intentionally visible but unassigned.</p><div class="dashboard-actions"><a href="../../demos/signaldeck/" target="_blank" rel="noopener">Open full screen ↗</a><a href="https://github.com/jeniferseciliya/ai-cloud-gtm-intelligence" target="_blank" rel="noopener">View methodology ↗</a></div></div>
+        </div>
+        <div class="dashboard-frame"><iframe src="../../demos/signaldeck/" title="Interactive SignalDeck AI-cloud GTM intelligence dashboard" loading="lazy"></iframe></div>
+      </section>
+
+      <section class="chapter technical" id="proof">
+        <div class="chapter-label"><span>07</span><h2>Technical proof</h2></div>
+        <div class="chapter-body">
+          <p class="lead">The artifact exposes the source map, classification rules, SQL models, metric contracts, tests, planning assumptions, and AI review boundaries behind the visual layer.</p>
+          <div class="technical-grid">
+            <article><h3>Validation</h3><p>The published build completed 8 dbt models and 19 data tests—27 of 27 operations—with zero warnings or errors. Tests cover grain, relationships, accepted values, score bounds, and market-reference exclusions.</p></article>
+            <article><h3>GTM judgment</h3><p>The project explicitly distinguishes public investment signals from private CRM measures and labels the territory output as a scenario. This prevents impressive-looking charts from silently overstating what the source can prove.</p></article>
+          </div>
+          <div class="skill-list"><span>GTM analytics</span><span>Revenue operations</span><span>Account segmentation</span><span>Territory planning</span><span>SQL</span><span>Python</span><span>dbt</span><span>DuckDB</span><span>Data quality</span><span>Metric contracts</span><span>Responsible AI</span><span>Dashboard design</span></div>
+          <a class="proof-link" href="https://github.com/jeniferseciliya/ai-cloud-gtm-intelligence" target="_blank" rel="noopener">Inspect the methodology and code <span>↗</span></a>
+        </div>
+      </section>
+
+      <section class="next-project"><div><span>Next case study</span><h2>TalentScope People Analytics</h2></div><a href="../talentscope/">Continue →</a></section>
+    </main>
+
+    <footer class="case-footer"><a href="../../">Jenifer Seciliya</a><span>Data &amp; BI Analyst</span><span>© 2026</span></footer>
+  </body>
+</html>

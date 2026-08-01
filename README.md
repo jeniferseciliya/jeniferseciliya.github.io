@@ -11,6 +11,7 @@ Project source code remains available as a secondary path.
 
 ## Featured work
 
+- SignalDeck — AI Cloud GTM & Revenue Operations Intelligence
 - TalentScope — People Analytics & Compensation Intelligence
 - Meridian — Retail BI & AI Analytics
 - Threadline — Product Analytics & Experimentation
