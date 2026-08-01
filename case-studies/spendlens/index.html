@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="SpendLens case study: self-service spend reporting, merchant normalization, explainable finance review signals, tested analytical models, and evidence-grounded AI reporting by Jenifer Seciliya." />
+    <meta name="theme-color" content="#f7f6f2" />
+    <meta property="og:title" content="SpendLens — Finance Operations Analytics Case Study" />
+    <meta property="og:description" content="From 1.44 million real purchasing-card transactions to a tested finance control tower and explainable review queue." />
+    <meta property="og:type" content="article" />
+    <title>SpendLens Finance Operations Case Study — Jenifer Seciliya</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23171716'/%3E%3Ctext x='32' y='40' text-anchor='middle' font-family='serif' font-size='24' fill='white'%3EJS%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body class="spend">
+    <a class="skip-link" href="#case-content">Skip to case study</a>
+    <header class="case-header">
+      <a class="back-link" href="../../#work"><span>←</span> Jenifer Seciliya</a>
+      <nav aria-label="Case study navigation">
+        <a href="#problem">Problem</a>
+        <a href="#findings">Findings</a>
+        <a class="header-dashboard" href="#dashboard">Dashboard ↓</a>
+      </nav>
+    </header>
+
+    <main class="case-main" id="case-content">
+      <section class="case-hero">
+        <div class="hero-grid">
+          <div>
+            <p class="eyebrow">Case study 01 · Finance operations</p>
+            <h1>SpendLens</h1>
+            <p class="hero-summary">A self-service finance control tower that turns real purchasing-card activity into department visibility, explainable review priorities, and an evidence contract for recurring AI-assisted reporting.</p>
+          </div>
+          <aside class="hero-decision">
+            <span>The decision</span>
+            <p>Where should Finance focus limited review time—and what can department leaders investigate without waiting for an analyst?</p>
+          </aside>
+        </div>
+
+        <div class="meta-strip" aria-label="Project summary">
+          <div><span>Audience</span><strong>Finance, Operations, Accounting, department leaders</strong></div>
+          <div><span>Source</span><strong>Delaware Department of Finance · monthly open data</strong></div>
+          <div><span>Analytical grain</span><strong>1,442,956 published card transactions</strong></div>
+          <div><span>Stack</span><strong>SQL · Python · dbt · DuckDB · AI controls</strong></div>
+        </div>
+      </section>
+
+      <nav class="case-nav" aria-label="On this page">
+        <a href="#problem">01 Problem</a><a href="#data">02 Data</a><a href="#approach">03 Approach</a><a href="#findings">04 Findings</a><a href="#decision">05 Recommendation</a><a href="#dashboard">06 Explore</a><a href="#proof">07 Technical proof</a>
+      </nav>
+
+      <section class="chapter" id="problem">
+        <div class="chapter-label"><span>01</span><h2>Problem</h2></div>
+        <div class="chapter-body">
+          <p class="lead">A finance team processing more than a million card records cannot investigate every transaction with equal attention. A useful analytical product must narrow the review surface without turning unusual activity into an accusation.</p>
+          <p>The challenge was to establish a trustworthy transaction grain, reconcile credits and fiscal periods, normalize unstable merchant labels, give departments a self-service view, and explain exactly why a record entered the review queue.</p>
+          <div class="question-grid">
+            <article><span>Question 01</span><h3>Which departments, categories, and merchants drive current spend?</h3></article>
+            <article><span>Question 02</span><h3>Which transaction contexts merit scarce Finance review time?</h3></article>
+            <article><span>Question 03</span><h3>Can a recurring narrative remain grounded in tested metrics?</h3></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="chapter" id="data">
+        <div class="chapter-label"><span>02</span><h2>Data</h2></div>
+        <div class="chapter-body">
+          <p class="lead">The State of Delaware publishes real employee purchasing-card activity with fiscal period, department, division, merchant, merchant category, transaction date, and amount.</p>
+          <p>The July 10, 2026 extract contains records from March 2017 through June 2026. It provides enough organizational and merchant detail for operational reporting, while excluding cardholder identities, receipts, approvals, budgets, contract identifiers, and policy outcomes.</p>
+          <div class="evidence-grid">
+            <article><strong>1.44M</strong><span>Published transactions loaded</span></article>
+            <article><strong>$621.71M</strong><span>Net card spend in the extract</span></article>
+            <article><strong>72</strong><span>Departments represented</span></article>
+          </div>
+          <div class="boundary">
+            <strong>Evidence boundary</strong>
+            <p>The source can support spend monitoring and review prioritization. It cannot determine whether a purchase was authorized, documented, necessary, fraudulent, wasteful, or policy compliant.</p>
+          </div>
+          <p class="source-note">Source: State of Delaware Department of Finance, Division of Accounting. The current export contains fiscal years 2018–2024 and 2026; FY2025 is absent and is not imputed.</p>
+        </div>
+      </section>
+
+      <section class="chapter" id="approach">
+        <div class="chapter-label"><span>03</span><h2>Approach</h2></div>
+        <div class="chapter-body">
+          <p class="lead">SpendLens was designed as an operational BI product: preserve source truth, build governed metrics, surface data-quality friction, create explainable review rules, then expose role-appropriate self-service views.</p>
+          <div class="workflow">
+            <article><span>01</span><h3>Ingest</h3><p>Load the monthly official CSV into a reproducible DuckDB raw layer.</p></article>
+            <article><span>02</span><h3>Normalize</h3><p>Preserve raw merchant text while resolving common processor and vendor variants.</p></article>
+            <article><span>03</span><h3>Model</h3><p>Build transaction, department-period, category, merchant, and baseline marts.</p></article>
+            <article><span>04</span><h3>Prioritize</h3><p>Score transparent amount, merchant-day, new-merchant, weekend, and credit signals.</p></article>
+            <article><span>05</span><h3>Control</h3><p>Reconcile totals, test every grain, and draft narrative only from an evidence packet.</p></article>
+          </div>
+          <div class="method-note">
+            <article><h3>Review logic</h3><p>High-amount signals use each department-category P99 with a minimum history requirement. Merchant-day clusters create one representative queue item, preventing repeated activity from inflating the operational workload.</p></article>
+            <article><h3>Responsible AI</h3><p>SQL calculates every metric. The dashboard assembles a structured packet and controlled narrative draft; a model may assist with wording but cannot invent a number, infer intent, or publish without human review.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="chapter" id="findings">
+        <div class="chapter-label"><span>04</span><h2>Findings</h2></div>
+        <div class="chapter-body">
+          <p class="lead">The strongest findings are operational: inconsistent merchant identity and reconciliation timing materially change how a finance dashboard must be designed.</p>
+          <div class="findings">
+            <article class="finding"><div class="finding-stat">39.4%</div><div><h3>Merchant normalization removed substantial label fragmentation.</h3><p>308,884 raw merchant strings resolve to 187,088 analytical entities. Both versions remain available so an analyst can audit every mapping decision.</p></div></article>
+            <article class="finding"><div class="finding-stat">15.1%</div><div><h3>Transaction month and fiscal period do not always align.</h3><p>217,339 records appear in a later fiscal period than their transaction month; 215,014 lag by one period. The dashboard therefore distinguishes operational transaction timing from fiscal reporting.</p></div></article>
+            <article class="finding"><div class="finding-stat">1.88%</div><div><h3>A small, explainable queue replaces blanket manual review.</h3><p>27,109 records meet at least one review rule and 1,429 receive high priority. The queue states why each record surfaced without claiming fraud or noncompliance.</p></div></article>
+            <article class="finding"><div class="finding-stat">42/42</div><div><h3>All models and data-quality checks pass.</h3><p>Tests cover source and fact grain, required fields, fiscal values, posting lag, credit definitions, review bounds, signal reasons, and aggregate reconciliation.</p></div></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="chapter" id="decision">
+        <div class="chapter-label"><span>05</span><h2>Decision</h2></div>
+        <div class="chapter-body">
+          <div class="recommendation">
+            <p class="eyebrow">Recommended operating use</p>
+            <h3>Use SpendLens as a triage and self-service reporting layer—then resolve flagged records with internal receipts, approvals, policies, budgets, and cardholder context.</h3>
+            <p>The public-data implementation demonstrates the analytical operating model. A production deployment would join the reviewed queue to governed expense, HRIS, ERP, budget, receipt, and approval sources before any compliance decision.</p>
+            <ul>
+              <li>Give department leaders filtered visibility into their own spend drivers.</li>
+              <li>Route high-priority signals to Finance with a reason and comparison baseline.</li>
+              <li>Monitor late-posting behavior so fiscal and operational reports reconcile.</li>
+              <li>Generate recurring summaries only from tested metrics and require analyst approval.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="dashboard-chapter" id="dashboard">
+        <div class="dashboard-intro">
+          <div><p class="eyebrow">06 · Interactive evidence</p><h2>Operate the control tower.</h2></div>
+          <div><p>Change department and fiscal-year scope, inspect fiscal-period movement, compare category and merchant concentration, open the review queue, and inspect the structured evidence passed into recurring reporting.</p><div class="dashboard-actions"><a href="../../demos/spendlens/" target="_blank" rel="noopener">Open full screen ↗</a><a href="https://github.com/jeniferseciliya/spendlens-finance-operations" target="_blank" rel="noopener">View methodology ↗</a></div></div>
+        </div>
+        <div class="dashboard-frame"><iframe src="../../demos/spendlens/" title="Interactive SpendLens finance operations control tower" loading="lazy"></iframe></div>
+      </section>
+
+      <section class="chapter technical" id="proof">
+        <div class="chapter-label"><span>07</span><h2>Technical proof</h2></div>
+        <div class="chapter-body">
+          <p class="lead">The repository exposes the source contract, merchant rules, percentile baselines, score thresholds, SQL models, tests, reconciliation logic, analytical outputs, and AI reporting boundary behind the visual layer.</p>
+          <div class="technical-grid">
+            <article><h3>Validation</h3><p>The build completed 9 dbt models and 33 tests—42 of 42 operations—with no errors or warnings. Fact totals reconcile to the department-period mart.</p></article>
+            <article><h3>Finance judgment</h3><p>Credits remain visible, exact source rows are not silently deduplicated, missing FY2025 coverage is disclosed, fiscal lag is modeled, and no review signal is presented as an adjudicated outcome.</p></article>
+          </div>
+          <div class="skill-list"><span>Finance analytics</span><span>Operations reporting</span><span>Self-service BI</span><span>SQL</span><span>Python</span><span>dbt</span><span>DuckDB</span><span>Window functions</span><span>Entity normalization</span><span>Data quality</span><span>Explainable controls</span><span>Responsible AI</span></div>
+          <a class="proof-link" href="https://github.com/jeniferseciliya/spendlens-finance-operations" target="_blank" rel="noopener">Inspect the methodology and code <span>↗</span></a>
+        </div>
+      </section>
+
+      <section class="next-project"><div><span>Next case study</span><h2>SignalDeck GTM Analytics</h2></div><a href="../signaldeck/">Continue →</a></section>
+    </main>
+
+    <footer class="case-footer"><a href="../../">Jenifer Seciliya</a><span>Data &amp; BI Analyst</span><span>© 2026</span></footer>
+  </body>
+</html>
+

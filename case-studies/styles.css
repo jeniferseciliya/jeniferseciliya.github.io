@@ -15,6 +15,7 @@ body.talent { --accent: #14776f; --accent-soft: #e4f0ed; }
 body.meridian { --accent: #a94b2d; --accent-soft: #f4e8e2; }
 body.threadline { --accent: #315ed2; --accent-soft: #e9edfb; }
 body.signal { --accent: #8cac16; --accent-soft: #eef7c9; }
+body.spend { --accent: #678700; --accent-soft: #edf5cf; }
 
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }

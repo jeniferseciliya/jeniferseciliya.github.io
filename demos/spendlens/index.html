@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="SpendLens is a finance-operations analytics case study built from 1.44 million real purchasing-card transactions."
+    />
+    <meta name="theme-color" content="#111411" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='8' fill='%23111411'/%3E%3Cpath d='M14 18h36v8H25v6h20v8H25v6h25v8H14V18z' fill='%23d7ff64'/%3E%3C/svg%3E"
+    />
+    <title>SpendLens — Finance Operations Control Tower</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#dashboard-main">Skip to dashboard</a>
+    <div class="ledger-grid" aria-hidden="true"></div>
+
+    <header class="masthead">
+      <a class="wordmark" href="#top" aria-label="SpendLens home">
+        <span>SL</span>
+        <strong>SpendLens</strong>
+      </a>
+      <div class="masthead__status">
+        <span class="pulse" aria-hidden="true"></span>
+        <span>Validated analytical artifact</span>
+      </div>
+      <a class="source-link" href="https://data.delaware.gov/Government-and-Finance/State-Employee-Credit-Card-Transactions/nurt-5rqw">Source data ↗</a>
+    </header>
+
+    <main id="dashboard-main">
+      <section class="hero" id="top">
+        <div class="hero__copy">
+          <p class="overline">Finance operations · self-service intelligence</p>
+          <h1>Spend control<br /><em>without the noise.</em></h1>
+          <p class="hero__deck">
+            A tested control tower that turns real purchasing-card activity into
+            explainable review priorities, department-level visibility, and an
+            evidence packet for recurring finance reporting.
+          </p>
+        </div>
+        <aside class="hero__brief" aria-label="Decision brief">
+          <span class="brief-index">Decision / 01</span>
+          <p>
+            Where should Finance focus limited review time—and which changes can
+            department leaders investigate without waiting for an analyst?
+          </p>
+          <dl>
+            <div><dt>Grain</dt><dd>Published card transaction</dd></div>
+            <div><dt>Refresh</dt><dd>Monthly source feed</dd></div>
+            <div><dt>Control</dt><dd>Exception-first review</dd></div>
+          </dl>
+        </aside>
+      </section>
+
+      <section class="evidence-boundary" aria-label="Evidence boundary">
+        <span>Read before deciding</span>
+        <p id="evidence-boundary">Loading evidence boundary…</p>
+      </section>
+
+      <section class="filters" aria-label="Dashboard filters">
+        <div class="filters__title">
+          <span>Live control surface</span>
+          <strong id="scope-label">All departments · FY2026</strong>
+        </div>
+        <label>
+          <span>Department</span>
+          <select id="department-filter"><option>Loading…</option></select>
+        </label>
+        <label>
+          <span>Fiscal year</span>
+          <select id="year-filter"><option>Loading…</option></select>
+        </label>
+        <button id="reset-filters" type="button">Reset</button>
+      </section>
+
+      <section class="kpis" aria-label="Spend health metrics">
+        <article class="kpi kpi--lead">
+          <span>Net card spend</span>
+          <strong id="kpi-spend">—</strong>
+          <small id="kpi-spend-note">Purchases less credits</small>
+        </article>
+        <article class="kpi">
+          <span>Transactions</span>
+          <strong id="kpi-transactions">—</strong>
+          <small>Published source rows</small>
+        </article>
+        <article class="kpi">
+          <span>Active merchants</span>
+          <strong id="kpi-merchants">—</strong>
+          <small>Normalized merchant entities</small>
+        </article>
+        <article class="kpi kpi--signal">
+          <span>Review signals</span>
+          <strong id="kpi-signals">—</strong>
+          <small id="kpi-signals-note">Prioritized, not adjudicated</small>
+        </article>
+      </section>
+
+      <section class="analysis-grid">
+        <article class="panel panel--trend">
+          <header class="panel__header">
+            <div>
+              <span class="panel-number">01</span>
+              <p class="overline">Operational pulse</p>
+              <h2>Spend movement</h2>
+            </div>
+            <p id="trend-context">Monthly net spend for the selected scope.</p>
+          </header>
+          <div id="spend-chart" class="chart" role="img" aria-label="Monthly net spend line chart"></div>
+          <div class="trend-legend">
+            <span><i class="legend-line"></i> Net spend</span>
+            <span><i class="legend-dash"></i> Prior three-period average</span>
+          </div>
+        </article>
+
+        <article class="panel panel--categories">
+          <header class="panel__header">
+            <div>
+              <span class="panel-number">02</span>
+              <p class="overline">Cost structure</p>
+              <h2>Category pressure</h2>
+            </div>
+          </header>
+          <div id="category-bars" class="rank-list"></div>
+        </article>
+      </section>
+
+      <section class="signal-desk">
+        <header class="signal-desk__header">
+          <div>
+            <span class="panel-number panel-number--dark">03</span>
+            <p class="overline">Explainable review queue</p>
+            <h2>Focus attention where context changes.</h2>
+          </div>
+          <p>
+            Each item states why it surfaced and the baseline used. Signals support
+            investigation; they are not evidence of fraud, waste, or intent.
+          </p>
+        </header>
+        <div class="signal-summary" id="signal-summary"></div>
+        <div class="queue-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Priority</th>
+                <th>Date</th>
+                <th>Merchant / reason</th>
+                <th>Category</th>
+                <th class="numeric">Amount</th>
+              </tr>
+            </thead>
+            <tbody id="signal-table"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="analysis-grid analysis-grid--lower">
+        <article class="panel panel--merchants">
+          <header class="panel__header">
+            <div>
+              <span class="panel-number">04</span>
+              <p class="overline">Vendor intelligence</p>
+              <h2>Merchant concentration</h2>
+            </div>
+            <p>Normalized entities reveal spend hidden behind processor strings.</p>
+          </header>
+          <div id="merchant-list" class="merchant-list"></div>
+        </article>
+
+        <article class="panel panel--brief">
+          <header class="panel__header">
+            <div>
+              <span class="panel-number">05</span>
+              <p class="overline">AI-ready reporting contract</p>
+              <h2>Evidence packet</h2>
+            </div>
+            <span class="human-review">Human review required</span>
+          </header>
+          <div class="packet-code" id="packet-code" aria-label="Structured evidence packet"></div>
+          <div class="draft-brief">
+            <span>Controlled narrative draft</span>
+            <p id="draft-brief">Select a scope to generate an evidence-grounded summary.</p>
+          </div>
+        </article>
+      </section>
+
+      <section class="quality-panel">
+        <div class="quality-panel__intro">
+          <p class="overline">Data reliability</p>
+          <h2>The inconvenient facts stay visible.</h2>
+          <p id="coverage-note">Loading coverage note…</p>
+        </div>
+        <dl>
+          <div><dt>Source rows</dt><dd id="quality-rows">—</dd></div>
+          <div><dt>Model tests</dt><dd id="quality-tests">—</dd></div>
+          <div><dt>Posted after transaction month</dt><dd id="quality-lag">—</dd></div>
+          <div><dt>Missing merchant/category</dt><dd id="quality-missing">—</dd></div>
+        </dl>
+      </section>
+    </main>
+
+    <footer>
+      <div>
+        <strong>SpendLens</strong>
+        <span>Finance Operations Control Tower</span>
+      </div>
+      <p>Python · SQL · DuckDB · dbt · explainable controls · responsible AI</p>
+      <a href="https://data.delaware.gov/Government-and-Finance/State-Employee-Credit-Card-Transactions/nurt-5rqw">Delaware Open Data ↗</a>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
+

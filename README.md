@@ -11,6 +11,7 @@ Project source code remains available as a secondary path.
 
 ## Featured work
 
+- SpendLens — Finance Operations &amp; Spend Intelligence
 - SignalDeck — AI Cloud GTM & Revenue Operations Intelligence
 - TalentScope — People Analytics & Compensation Intelligence
 - Meridian — Retail BI & AI Analytics
