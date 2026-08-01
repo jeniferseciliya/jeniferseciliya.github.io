@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Meridian case study: retail business intelligence, cohort analysis, RFM segmentation, anomaly monitoring, and governed KPI design by Jenifer Seciliya." />
+    <meta name="theme-color" content="#f7f6f2" />
+    <meta property="og:title" content="Meridian — Retail BI Case Study" />
+    <meta property="og:description" content="From 1.06 million transaction lines to a tested view of revenue, retention, product mix, and exceptions." />
+    <meta property="og:type" content="article" />
+    <title>Meridian Case Study — Jenifer Seciliya</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23171716'/%3E%3Ctext x='32' y='40' text-anchor='middle' font-family='serif' font-size='24' fill='white'%3EJS%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body class="meridian">
+    <a class="skip-link" href="#case-content">Skip to case study</a>
+    <header class="case-header">
+      <a class="back-link" href="../../#work"><span>←</span> Jenifer Seciliya</a>
+      <nav aria-label="Case study navigation">
+        <a href="#problem">Problem</a>
+        <a href="#findings">Findings</a>
+        <a class="header-dashboard" href="#dashboard">Dashboard ↓</a>
+      </nav>
+    </header>
+
+    <main class="case-main" id="case-content">
+      <section class="case-hero">
+        <div class="hero-grid">
+          <div>
+            <p class="eyebrow">Case study 02 · Business intelligence</p>
+            <h1>Meridian</h1>
+            <p class="hero-summary">A retail BI system that turns a messy transaction workbook into governed revenue metrics, customer lifecycle views, product signals, and a reviewable exception-monitoring workflow.</p>
+          </div>
+          <aside class="hero-decision">
+            <span>The decision</span>
+            <p>Where is commercial performance coming from, what threatens its quality or durability, and which exceptions deserve an analyst’s attention first?</p>
+          </aside>
+        </div>
+
+        <div class="meta-strip" aria-label="Project summary">
+          <div><span>Audience</span><strong>Commercial, finance, operations, customer teams</strong></div>
+          <div><span>Source</span><strong>UCI Online Retail II · 2009–2011</strong></div>
+          <div><span>Analytical scope</span><strong>1,067,371 transaction lines</strong></div>
+          <div><span>Stack</span><strong>SQL · Python · dbt · DuckDB</strong></div>
+        </div>
+      </section>
+
+      <nav class="case-nav" aria-label="On this page">
+        <a href="#problem">01 Problem</a><a href="#data">02 Data</a><a href="#approach">03 Approach</a><a href="#findings">04 Findings</a><a href="#decision">05 Recommendation</a><a href="#dashboard">06 Explore</a><a href="#proof">07 Technical proof</a>
+      </nav>
+
+      <section class="chapter" id="problem">
+        <div class="chapter-label"><span>01</span><h2>Problem</h2></div>
+        <div class="chapter-body">
+          <p class="lead">Retail reporting becomes unreliable when revenue, cancellations, customer identity, and partial periods are handled as presentation details instead of metric contracts.</p>
+          <p>The project needed to create a trustworthy executive view while preserving the distinctions between completed sales and cancellations, commercial metrics and customer metrics, descriptive signals and causal explanations.</p>
+          <div class="question-grid">
+            <article><span>Question 01</span><h3>How are revenue, orders, and customer activity changing?</h3></article>
+            <article><span>Question 02</span><h3>Where are geography, product, and cancellation risks concentrated?</h3></article>
+            <article><span>Question 03</span><h3>Which unusual days merit investigation rather than automatic explanation?</h3></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="chapter" id="data">
+        <div class="chapter-label"><span>02</span><h2>Data</h2></div>
+        <div class="chapter-body">
+          <p class="lead">The source is a real two-sheet retail workbook containing more than one million transaction lines from a UK-based online retailer.</p>
+          <p>Each line includes invoice, product, quantity, date, unit price, customer identifier, and country. The quality assessment preserves material exclusions instead of hiding them behind a single “cleaned” table.</p>
+          <div class="evidence-grid">
+            <article><strong>1,067,371</strong><span>Source transaction lines</span></article>
+            <article><strong>1,041,670</strong><span>Valid completed-sales lines</span></article>
+            <article><strong>243,007</strong><span>Lines missing customer ID</span></article>
+          </div>
+          <div class="boundary">
+            <strong>Evidence boundary</strong>
+            <p>Missing customer IDs remain in commercial KPIs but are excluded from retention and RFM analysis. Cancellations are modeled separately. December 2011 ends on December 9, so it is not treated as a complete month.</p>
+          </div>
+          <p class="source-note">Source: Chen, D. (2012), <em>Online Retail II</em>, UCI Machine Learning Repository, CC BY 4.0. Historical data demonstrates analytical methods; it does not describe today’s retail market.</p>
+        </div>
+      </section>
+
+      <section class="chapter" id="approach">
+        <div class="chapter-label"><span>03</span><h2>Approach</h2></div>
+        <div class="chapter-body">
+          <p class="lead">A reusable analytical layer was built before the dashboard so every view shared the same definitions.</p>
+          <div class="workflow">
+            <article><span>01</span><h3>Profile</h3><p>Assess dates, customer gaps, cancellation markers, prices, quantities, and duplicate-looking rows.</p></article>
+            <article><span>02</span><h3>Normalize</h3><p>Standardize workbook sheets into a documented transaction layer.</p></article>
+            <article><span>03</span><h3>Model</h3><p>Separate completed sales and cancellations; create KPI, product, RFM, and cohort marts.</p></article>
+            <article><span>04</span><h3>Monitor</h3><p>Flag unusual revenue days against a robust centered 28-day baseline.</p></article>
+            <article><span>05</span><h3>Validate</h3><p>Test positive sales, cancellation logic, uniqueness, accepted values, and metric bounds.</p></article>
+          </div>
+          <div class="method-note">
+            <article><h3>Metric design</h3><p>Net sales require non-cancelled invoices, positive quantity, positive price, and a valid date. Customer lifecycle metrics use only known customer IDs, while commercial KPIs retain valid anonymous sales.</p></article>
+            <article><h3>Exception logic</h3><p>A robust z-score identifies days worth reviewing. A signal means “investigate,” not “a business problem occurred,” and every disposition remains a human analytical decision.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="chapter" id="findings">
+        <div class="chapter-label"><span>04</span><h2>Findings</h2></div>
+        <div class="chapter-body">
+          <p class="lead">The commercial picture combines strong scale with meaningful concentration and operational questions.</p>
+          <div class="findings">
+            <article class="finding"><div class="finding-stat">£20.97M</div><div><h3>Completed positive-value sales span 40,077 orders.</h3><p>The governed revenue metric excludes cancellations and invalid values rather than silently netting unlike transaction states together.</p></div></article>
+            <article class="finding"><div class="finding-stat">85.2%</div><div><h3>Revenue is heavily concentrated in the United Kingdom.</h3><p>The domestic base provides scale, but portfolio-wide growth can obscure limited geographic diversification and different operational economics.</p></div></article>
+            <article class="finding"><div class="finding-stat">22.6%</div><div><h3>Cancellation exposure merits an operating review.</h3><p>The rate is an order-level source signal. High-value cancellations, repeat-cancellation customers, products, and country differences should be investigated before causes are assigned.</p></div></article>
+            <article class="finding"><div class="finding-stat">20 days</div><div><h3>Robust exception monitoring narrows the investigation queue.</h3><p>Each flagged day should be traced to invoices, products, countries, and data-quality events, then classified as a valid event, operational issue, or source problem.</p></div></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="chapter" id="decision">
+        <div class="chapter-label"><span>05</span><h2>Decision</h2></div>
+        <div class="chapter-body">
+          <div class="recommendation">
+            <p class="eyebrow">Recommended action</p>
+            <h3>Protect the core revenue engine while investigating concentration, cancellations, and the quality of recent growth.</h3>
+            <p>November 2011 revenue rose 30.7% from October, but the increase should be decomposed before it is treated as durable. Product, country, order-size, and new-versus-repeat-customer contributions can reveal what is actually driving it.</p>
+            <ul>
+              <li>Trace high-value and repeat cancellations to products, customers, countries, and source-system rules.</li>
+              <li>Protect hero-product availability and examine basket affinity and return behavior.</li>
+              <li>Evaluate international growth with acquisition, retention, fulfilment cost, and cancellation context.</li>
+              <li>Record the disposition of every anomaly instead of auto-generating a cause.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="dashboard-chapter" id="dashboard">
+        <div class="dashboard-intro">
+          <div><p class="eyebrow">06 · Interactive evidence</p><h2>Explore the commercial view.</h2></div>
+          <div><p>Filter by country and year to update revenue, orders, average order value, known customers, cancellation rate, monthly trend, and rankings. Cohort and RFM panels retain a stable portfolio-wide context.</p><div class="dashboard-actions"><a href="../../demos/meridian/" target="_blank" rel="noopener">Open full screen ↗</a><a href="https://github.com/jeniferseciliya/retail-bi-ai-analytics" target="_blank" rel="noopener">View source code ↗</a></div></div>
+        </div>
+        <div class="dashboard-frame"><iframe src="../../demos/meridian/" title="Interactive Meridian retail business intelligence dashboard" loading="lazy"></iframe></div>
+      </section>
+
+      <section class="chapter technical" id="proof">
+        <div class="chapter-label"><span>07</span><h2>Technical proof</h2></div>
+        <div class="chapter-body">
+          <p class="lead">The repository documents the entire path from source profiling to executive metrics and exception review.</p>
+          <div class="technical-grid">
+            <article><h3>Validation</h3><p>The Python ingestion and analytical-mart builds completed successfully. The dbt build passed all 18 models and tests.</p></article>
+            <article><h3>Analytical products</h3><p>The project includes sales and cancellation facts, executive KPIs, product performance, customer RFM segments, retention cohorts, geographic views, and a reviewable anomaly queue.</p></article>
+          </div>
+          <div class="skill-list"><span>Business intelligence</span><span>KPI design</span><span>SQL</span><span>Python</span><span>pandas</span><span>dbt</span><span>DuckDB</span><span>Dimensional modeling</span><span>RFM</span><span>Cohort analysis</span><span>Anomaly detection</span><span>Data storytelling</span></div>
+          <a class="proof-link" href="https://github.com/jeniferseciliya/retail-bi-ai-analytics" target="_blank" rel="noopener">Inspect the methodology and code <span>↗</span></a>
+        </div>
+      </section>
+
+      <section class="next-project"><div><span>Next case study</span><h2>Threadline Product Observatory</h2></div><a href="../threadline/">Continue →</a></section>
+    </main>
+
+    <footer class="case-footer"><a href="../../">Jenifer Seciliya</a><span>Data &amp; BI Analyst</span><span>© 2026</span></footer>
+  </body>
+</html>

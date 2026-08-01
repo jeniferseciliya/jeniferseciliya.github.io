@@ -4,9 +4,10 @@ Recruiter-focused portfolio for Data, BI, People Analytics, Product Analytics, a
 Recruitment Analytics opportunities.
 
 The site is intentionally dependency-light: semantic HTML, custom CSS, and a small
-JavaScript enhancement layer. The three real, filterable dashboards are embedded
-on demand, while project source code remains available as a secondary path. All
-dashboard assets and the résumé are hosted locally for reliable GitHub Pages delivery.
+JavaScript enhancement layer. The homepage is a concise project index; each project
+opens a narrative case study covering the business problem, data contract, analytical
+approach, findings, recommendation, technical proof, and embedded live dashboard.
+Project source code remains available as a secondary path.
 
 ## Featured work
 

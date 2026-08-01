@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Threadline case study: product analytics, clickstream sessionization, behavioral funnels, path analysis, experiment design, and power analysis by Jenifer Seciliya." />
+    <meta name="theme-color" content="#f7f6f2" />
+    <meta property="og:title" content="Threadline — Product Analytics Case Study" />
+    <meta property="og:description" content="From 165,474 ordered product views to a transparent product-discovery analysis and test plan." />
+    <meta property="og:type" content="article" />
+    <title>Threadline Case Study — Jenifer Seciliya</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23171716'/%3E%3Ctext x='32' y='40' text-anchor='middle' font-family='serif' font-size='24' fill='white'%3EJS%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body class="threadline">
+    <a class="skip-link" href="#case-content">Skip to case study</a>
+    <header class="case-header">
+      <a class="back-link" href="../../#work"><span>←</span> Jenifer Seciliya</a>
+      <nav aria-label="Case study navigation">
+        <a href="#problem">Problem</a>
+        <a href="#findings">Findings</a>
+        <a class="header-dashboard" href="#dashboard">Dashboard ↓</a>
+      </nav>
+    </header>
+
+    <main class="case-main" id="case-content">
+      <section class="case-hero">
+        <div class="hero-grid">
+          <div>
+            <p class="eyebrow">Case study 03 · Product analytics</p>
+            <h1>Threadline</h1>
+            <p class="hero-summary">A product-discovery analysis that turns ordered clickstream events into session-depth metrics, path diagnostics, a transparent review queue, and a statistically grounded experiment plan.</p>
+          </div>
+          <aside class="hero-decision">
+            <span>The decision</span>
+            <p>Should the product-listing experience change to help more sessions reach meaningful multi-item exploration without increasing short sessions?</p>
+          </aside>
+        </div>
+
+        <div class="meta-strip" aria-label="Project summary">
+          <div><span>Audience</span><strong>Product, growth, design, experimentation teams</strong></div>
+          <div><span>Source</span><strong>UCI clickstream · Apr–Aug 2008</strong></div>
+          <div><span>Analytical scope</span><strong>165,474 events · 24,026 sessions</strong></div>
+          <div><span>Stack</span><strong>SQL · Python · dbt · Power analysis</strong></div>
+        </div>
+      </section>
+
+      <nav class="case-nav" aria-label="On this page">
+        <a href="#problem">01 Problem</a><a href="#data">02 Data</a><a href="#approach">03 Approach</a><a href="#findings">04 Findings</a><a href="#decision">05 Experiment</a><a href="#dashboard">06 Explore</a><a href="#proof">07 Technical proof</a>
+      </nav>
+
+      <section class="chapter" id="problem">
+        <div class="chapter-label"><span>01</span><h2>Problem</h2></div>
+        <div class="chapter-body">
+          <p class="lead">The event stream records browsing but no cart or purchase event. The challenge was to make a useful product recommendation without inventing a conversion funnel the data does not contain.</p>
+          <p>The work therefore focuses on observable browsing depth, ordered category movement, placement behavior, and transparent diagnostic rules. Behavioral thresholds are labeled as proxies, not as purchase intent.</p>
+          <div class="question-grid">
+            <article><span>Question 01</span><h3>How deeply do sessions explore the product catalog?</h3></article>
+            <article><span>Question 02</span><h3>Where do paths, repeated clicks, or reversals suggest investigation?</h3></article>
+            <article><span>Question 03</span><h3>What experiment could improve discovery, and how much traffic would it require?</h3></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="chapter" id="data">
+        <div class="chapter-label"><span>02</span><h2>Data</h2></div>
+        <div class="chapter-body">
+          <p class="lead">The source contains ordered product-page views grouped into anonymous browsing sessions.</p>
+          <p>Required analytical fields are complete, and every `(session_id, click_order)` key is unique. Event order supports path analysis, but timestamps, dwell time, device, performance, cart, checkout, and purchase events are absent.</p>
+          <div class="evidence-grid">
+            <article><strong>165,474</strong><span>Ordered product-view events</span></article>
+            <article><strong>24,026</strong><span>Distinct browsing sessions</span></article>
+            <article><strong>217</strong><span>Products across four categories</span></article>
+          </div>
+          <div class="boundary">
+            <strong>Evidence boundary</strong>
+            <p>“Exploration,” “consideration,” “deep exploration,” and “friction” are documented behavioral proxies. They are not observed purchase intent, conversion, user frustration, or causal diagnoses.</p>
+          </div>
+          <p class="source-note">Source: Łapczyński, M. &amp; Białowąs, S. (2013), <em>Clickstream Data for Online Shopping</em>, UCI Machine Learning Repository, CC BY 4.0. The historical period supports method demonstration, not claims about current commerce behavior.</p>
+        </div>
+      </section>
+
+      <section class="chapter" id="approach">
+        <div class="chapter-label"><span>03</span><h2>Approach</h2></div>
+        <div class="chapter-body">
+          <p class="lead">The project separates what was observed, what was derived, what was flagged for review, and what would need to be tested experimentally.</p>
+          <div class="workflow">
+            <article><span>01</span><h3>Contract</h3><p>Validate event grain, required fields, order, product, category, and country labels.</p></article>
+            <article><span>02</span><h3>Sessionize</h3><p>Aggregate ordered views into depth, repeat-click, reversal, and category-path metrics.</p></article>
+            <article><span>03</span><h3>Model</h3><p>Build reusable session, category, transition, and product-placement marts.</p></article>
+            <article><span>04</span><h3>Diagnose</h3><p>Create a transparent review queue using explicit behavioral rules.</p></article>
+            <article><span>05</span><h3>Experiment</h3><p>Define hypothesis, randomization, metrics, guardrails, power, and readout discipline.</p></article>
+          </div>
+          <div class="method-note">
+            <article><h3>Proxy discipline</h3><p>Two, four, and seven product views define exploration thresholds. The four-view “consideration” metric is a depth proxy selected for experiment planning—not a renamed conversion.</p></article>
+            <article><h3>Instrumentation critique</h3><p>A production implementation should add add-to-cart, checkout, purchase, device, performance, exposure, and error events before evaluating downstream business impact.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="chapter" id="findings">
+        <div class="chapter-label"><span>04</span><h2>Findings</h2></div>
+        <div class="chapter-body">
+          <p class="lead">The data shows substantial multi-item browsing, but it also exposes concentration and ambiguity that should shape the next test.</p>
+          <div class="findings">
+            <article class="finding"><div class="finding-stat">6.9</div><div><h3>Average views per session indicate meaningful catalog exploration.</h3><p>Seventy-nine percent of sessions view at least two products, 54.3% reach the four-view consideration proxy, and 33.3% reach seven views.</p></div></article>
+            <article class="finding"><div class="finding-stat">21.0%</div><div><h3>One-click sessions form an important guardrail.</h3><p>A short recorded session is a diagnostic, not necessarily a web-analytics bounce. Any discovery treatment should avoid increasing this rate.</p></div></article>
+            <article class="finding"><div class="finding-stat">17.1%</div><div><h3>A transparent rule narrows the friction-review queue.</h3><p>Repeated clicks, page reversals, or narrow long browsing trigger investigation. Representative paths should be replayed before proposing a design change.</p></div></article>
+            <article class="finding"><div class="finding-stat">81.5%</div><div><h3>Geographic concentration limits generalization.</h3><p>Poland contributes most sessions, so aggregate behavior is not a balanced global benchmark. Country segments should be declared before experimentation.</p></div></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="chapter" id="decision">
+        <div class="chapter-label"><span>05</span><h2>Experiment</h2></div>
+        <div class="chapter-body">
+          <div class="recommendation">
+            <p class="eyebrow">Recommended test</p>
+            <h3>Test clearer category cues and product-comparison affordances with session-level random assignment.</h3>
+            <p>Use the share of sessions reaching four product views as the primary metric. Track one-click session rate, average views, page reversals, and—once instrumented—performance and error rate as guardrails.</p>
+            <ul>
+              <li>Control: current product-listing experience. Treatment: revised category cues and comparison affordance.</li>
+              <li>At the 54.3% baseline, a 10% relative lift requires about 1,305 sessions per variant.</li>
+              <li>Observed traffic suggests roughly 15 days, subject to recalculation with current eligible production traffic.</li>
+              <li>Use intent-to-treat analysis, report confidence intervals, test sample-ratio mismatch, and avoid early stopping.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="dashboard-chapter" id="dashboard">
+        <div class="dashboard-intro">
+          <div><p class="eyebrow">06 · Interactive evidence</p><h2>Explore the browse path.</h2></div>
+          <div><p>Filter by month and country to examine session depth, category attention, transitions, placement behavior, the friction-review queue, and experiment-sizing assumptions.</p><div class="dashboard-actions"><a href="../../demos/threadline/" target="_blank" rel="noopener">Open full screen ↗</a><a href="https://github.com/jeniferseciliya/product-analytics-experimentation" target="_blank" rel="noopener">View source code ↗</a></div></div>
+        </div>
+        <div class="dashboard-frame"><iframe src="../../demos/threadline/" title="Interactive Threadline product analytics dashboard" loading="lazy"></iframe></div>
+      </section>
+
+      <section class="chapter technical" id="proof">
+        <div class="chapter-label"><span>07</span><h2>Technical proof</h2></div>
+        <div class="chapter-body">
+          <p class="lead">The project demonstrates the full path from event contract to experiment plan, including what the source cannot support.</p>
+          <div class="technical-grid">
+            <article><h3>Validation</h3><p>There are no missing required fields or duplicate session-order keys. Python builds completed successfully, and the dbt build passed all 12 models and tests.</p></article>
+            <article><h3>Analytical products</h3><p>Outputs include session-depth metrics, category transitions, product-placement diagnostics, a rule-based review queue, a behavioral dashboard, and an explicit sample-size plan.</p></article>
+          </div>
+          <div class="skill-list"><span>Product analytics</span><span>Event taxonomy</span><span>SQL window functions</span><span>Python</span><span>pandas</span><span>dbt</span><span>Sessionization</span><span>Funnels</span><span>Path analysis</span><span>Experiment design</span><span>Power analysis</span><span>Instrumentation</span></div>
+          <a class="proof-link" href="https://github.com/jeniferseciliya/product-analytics-experimentation" target="_blank" rel="noopener">Inspect the methodology and code <span>↗</span></a>
+        </div>
+      </section>
+
+      <section class="next-project"><div><span>Return to case study 01</span><h2>TalentScope Workforce Intelligence</h2></div><a href="../talentscope/">Continue →</a></section>
+    </main>
+
+    <footer class="case-footer"><a href="../../">Jenifer Seciliya</a><span>Data &amp; BI Analyst</span><span>© 2026</span></footer>
+  </body>
+</html>

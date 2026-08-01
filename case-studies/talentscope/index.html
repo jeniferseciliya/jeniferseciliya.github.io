@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="TalentScope case study: people analytics, compensation benchmarking, data modeling, and evidence-aware workforce intelligence by Jenifer Seciliya." />
+    <meta name="theme-color" content="#f7f6f2" />
+    <meta property="og:title" content="TalentScope — People Analytics Case Study" />
+    <meta property="og:description" content="From 596,552 DOL records to an evidence-aware view of Bay Area talent demand and compensation." />
+    <meta property="og:type" content="article" />
+    <title>TalentScope Case Study — Jenifer Seciliya</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23171716'/%3E%3Ctext x='32' y='40' text-anchor='middle' font-family='serif' font-size='24' fill='white'%3EJS%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body class="talent">
+    <a class="skip-link" href="#case-content">Skip to case study</a>
+    <header class="case-header">
+      <a class="back-link" href="../../#work"><span>←</span> Jenifer Seciliya</a>
+      <nav aria-label="Case study navigation">
+        <a href="#problem">Problem</a>
+        <a href="#findings">Findings</a>
+        <a class="header-dashboard" href="#dashboard">Dashboard ↓</a>
+      </nav>
+    </header>
+
+    <main class="case-main" id="case-content">
+      <section class="case-hero">
+        <div class="hero-grid">
+          <div>
+            <p class="eyebrow">Case study 01 · People analytics</p>
+            <h1>TalentScope</h1>
+            <p class="hero-summary">A workforce-intelligence analysis that asks how recruiting and compensation teams should read Bay Area market pressure from public labor filings—without pretending a filing is a hire.</p>
+          </div>
+          <aside class="hero-decision">
+            <span>The decision</span>
+            <p>Where should a people team focus recruiting attention, how should it benchmark salary floors, and where does employer concentration create competitive pressure?</p>
+          </aside>
+        </div>
+
+        <div class="meta-strip" aria-label="Project summary">
+          <div><span>Audience</span><strong>People, recruiting, compensation, workforce planning</strong></div>
+          <div><span>Source</span><strong>U.S. DOL OFLC · FY2025</strong></div>
+          <div><span>Analytical grain</span><strong>594,821 latest resolved cases</strong></div>
+          <div><span>Stack</span><strong>SQL · Python · dbt · DuckDB</strong></div>
+        </div>
+      </section>
+
+      <nav class="case-nav" aria-label="On this page">
+        <a href="#problem">01 Problem</a><a href="#data">02 Data</a><a href="#approach">03 Approach</a><a href="#findings">04 Findings</a><a href="#decision">05 Recommendation</a><a href="#dashboard">06 Explore</a><a href="#proof">07 Technical proof</a>
+      </nav>
+
+      <section class="chapter" id="problem">
+        <div class="chapter-label"><span>01</span><h2>Problem</h2></div>
+        <div class="chapter-body">
+          <p class="lead">Public labor data is rich enough to inform market strategy, but easy to mislabel. The analytical challenge was to extract useful recruiting and compensation signals while staying honest about what the source can prove.</p>
+          <p>A useful answer had to distinguish cases from positions, filing activity from confirmed hiring, and salary floors from realized compensation. It also had to resolve repeated case determinations before any market comparison could be trusted.</p>
+          <div class="question-grid">
+            <article><span>Question 01</span><h3>Where is specialized talent demand concentrated?</h3></article>
+            <article><span>Question 02</span><h3>How do Bay Area salary floors compare with national role benchmarks?</h3></article>
+            <article><span>Question 03</span><h3>Which employers and occupations shape the competitive market?</h3></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="chapter" id="data">
+        <div class="chapter-label"><span>02</span><h2>Data</h2></div>
+        <div class="chapter-body">
+          <p class="lead">Four official FY2025 disclosure workbooks contributed 596,552 rows of LCA certification activity.</p>
+          <p>The source contains filing status, requested worker positions, job and employer information, worksite geography, wage floors, prevailing wages, and processing dates. Personal and representative contact fields were excluded from the analytical extract.</p>
+          <div class="evidence-grid">
+            <article><strong>596,552</strong><span>Quarterly source rows</span></article>
+            <article><strong>1,731</strong><span>Repeated case numbers requiring resolution</span></article>
+            <article><strong>594,821</strong><span>Distinct latest-case records</span></article>
+          </div>
+          <div class="boundary">
+            <strong>Evidence boundary</strong>
+            <p>LCA filings are a specialized-labor demand proxy—not job openings, applicants, offers, or confirmed hires. Salary figures are annualized filing lower bounds, not total compensation or pay-equity outcomes.</p>
+          </div>
+          <p class="source-note">Source: U.S. Department of Labor, Employment and Training Administration, Office of Foreign Labor Certification, FY2025 disclosure files.</p>
+        </div>
+      </section>
+
+      <section class="chapter" id="approach">
+        <div class="chapter-label"><span>03</span><h2>Approach</h2></div>
+        <div class="chapter-body">
+          <p class="lead">The analysis was designed as a governed pipeline, not a spreadsheet calculation feeding a chart.</p>
+          <div class="workflow">
+            <article><span>01</span><h3>Acquire</h3><p>Ingest four official quarterly workbooks and preserve source lineage.</p></article>
+            <article><span>02</span><h3>Profile</h3><p>Reconcile schema drift and remove unnecessary personal fields.</p></article>
+            <article><span>03</span><h3>Resolve</h3><p>Keep the latest determination per case using date and status priority.</p></article>
+            <article><span>04</span><h3>Model</h3><p>Annualize wages, define markets and role families, and build reusable marts.</p></article>
+            <article><span>05</span><h3>Validate</h3><p>Test grain, geography, wage bounds, accepted values, and business rules.</p></article>
+          </div>
+          <div class="method-note">
+            <article><h3>Metric design</h3><p>Certified positions use requested worker positions on certified latest outcomes. Market salary delta compares a segment median with the same role family nationally, while preserving the composition caveat.</p></article>
+            <article><h3>Responsible AI</h3><p>Rules calculate the evidence. AI may help draft a decision brief, but it cannot calculate metrics, invent causes, remove limitations, or publish without human review.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="chapter" id="findings">
+        <div class="chapter-label"><span>04</span><h2>Findings</h2></div>
+        <div class="chapter-body">
+          <p class="lead">The most useful result was not a single market ranking—it was a set of signals a people team could use to ask better planning questions.</p>
+          <div class="findings">
+            <article class="finding"><div class="finding-stat">$139,214</div><div><h3>Bay Area People &amp; Talent carries a substantial salary-floor premium.</h3><p>The segment median is 64.2% above the national People &amp; Talent median. This is a market and role-mix comparison, not a cost-of-living or pay-equity estimate.</p></div></article>
+            <article class="finding"><div class="finding-stat">54.4%</div><div><h3>Demand is concentrated among a small employer group.</h3><p>The ten largest employers account for 54.4% of certified positions in Bay Area People &amp; Talent, compared with 29.6% nationally.</p></div></article>
+            <article class="finding"><div class="finding-stat">11,351</div><div><h3>Data &amp; Analytics is an adjacent, higher-volume talent market.</h3><p>Bay Area Data &amp; Analytics includes 5,465 new-employment positions and a $165,000 median salary floor—36.8% above its national role-family median.</p></div></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="chapter" id="decision">
+        <div class="chapter-label"><span>05</span><h2>Decision</h2></div>
+        <div class="chapter-body">
+          <div class="recommendation">
+            <p class="eyebrow">Recommended use</p>
+            <h3>Use the analysis as an external market lens, then join it with internal recruiting evidence before making workforce decisions.</h3>
+            <p>The filing data is strongest for market mapping and compensation context. It becomes more decision-ready when combined with internal requisition, applicant-stage, offer, acceptance, time-to-fill, and retention data.</p>
+            <ul>
+              <li>Review salary bands where external filing floors materially exceed internal expectations.</li>
+              <li>Prioritize sourcing research in markets with both demand volume and employer concentration.</li>
+              <li>Track filing operations separately from recruiting funnel performance.</li>
+              <li>Validate market signals with current internal ATS and compensation data before acting.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="dashboard-chapter" id="dashboard">
+        <div class="dashboard-intro">
+          <div><p class="eyebrow">06 · Interactive evidence</p><h2>Explore the market yourself.</h2></div>
+          <div><p>Change the role family and market. The KPIs, compensation distribution, employer rankings, filing outcomes, and evidence brief update from the same governed metric layer.</p><div class="dashboard-actions"><a href="../../demos/talentscope/" target="_blank" rel="noopener">Open full screen ↗</a><a href="https://github.com/jeniferseciliya/people-analytics-compensation-intelligence" target="_blank" rel="noopener">View source code ↗</a></div></div>
+        </div>
+        <div class="dashboard-frame"><iframe src="../../demos/talentscope/" title="Interactive TalentScope people analytics dashboard" loading="lazy"></iframe></div>
+      </section>
+
+      <section class="chapter technical" id="proof">
+        <div class="chapter-label"><span>07</span><h2>Technical proof</h2></div>
+        <div class="chapter-body">
+          <p class="lead">The portfolio artifact exposes the definitions, transformation logic, tests, and limitations behind the visual layer.</p>
+          <div class="technical-grid">
+            <article><h3>Validation</h3><p>596,552 quarterly rows resolved to 594,821 latest cases. The dbt build completed with 16 of 16 models and tests passing and no warnings or errors.</p></article>
+            <article><h3>Modeling decisions</h3><p>Documented rules cover case resolution, wage annualization, nine-county Bay Area classification, role families, salary validity bounds, and employer concentration.</p></article>
+          </div>
+          <div class="skill-list"><span>People analytics</span><span>Recruitment analytics</span><span>Compensation benchmarking</span><span>SQL</span><span>Python</span><span>pandas</span><span>dbt</span><span>DuckDB</span><span>Data quality</span><span>Responsible AI</span><span>Dashboard design</span></div>
+          <a class="proof-link" href="https://github.com/jeniferseciliya/people-analytics-compensation-intelligence" target="_blank" rel="noopener">Inspect the methodology and code <span>↗</span></a>
+        </div>
+      </section>
+
+      <section class="next-project"><div><span>Next case study</span><h2>Meridian Retail Intelligence</h2></div><a href="../meridian/">Continue →</a></section>
+    </main>
+
+    <footer class="case-footer"><a href="../../">Jenifer Seciliya</a><span>Data &amp; BI Analyst</span><span>© 2026</span></footer>
+  </body>
+</html>
